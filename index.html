@@ -247,6 +247,125 @@ p {
     font-weight: 700;
 }
 
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 12px 18px;
+    z-index: 1001;
+    flex-direction: column;
+    gap: 5px;
+    position: relative;
+}
+
+.hamburger-menu span {
+    width: 24px;
+    height: 3px;
+    background: #000;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.hamburger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/* Mobile Menu Drawer */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0);
+    z-index: 999;
+    pointer-events: none;
+    transition: background 0.3s ease;
+}
+
+.mobile-menu.active {
+    background: rgba(0, 0, 0, 0.5);
+    pointer-events: auto;
+}
+
+.mobile-menu-content {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 80vw;
+    max-width: 300px;
+    height: 100%;
+    background: white;
+    transition: left 0.3s ease;
+    padding: 20px;
+    overflow-y: auto;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+}
+
+.mobile-menu.active .mobile-menu-content {
+    left: 0;
+}
+
+.mobile-menu-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 12px;
+    margin: -12px 0 20px -12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mobile-menu-close svg {
+    width: 24px;
+    height: 24px;
+    color: var(--besties-pink);
+}
+
+.mobile-menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.mobile-menu-item {
+    padding: 16px 12px;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #f0f0f0;
+    font-weight: 500;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mobile-menu-item:hover {
+    background: rgba(255, 107, 157, 0.1);
+    color: var(--besties-pink);
+}
+
+.mobile-menu-cart svg {
+    width: 20px;
+    height: 20px;
+}
+
 /* Hero Section */
 .hero {
     position: relative;
@@ -979,109 +1098,6 @@ section:nth-child(odd) {
 }
 
 /* Meet the Besties Section */
-.meet-besties-wrapper {
-    background: linear-gradient(135deg, #F5F0FF 0%, #FFF5F7 100%);
-}
-
-.meet-besties-title {
-    text-align: center;
-    font-size: 3rem;
-    color: var(--besties-pink);
-    padding: 40px 20px 20px;
-    font-weight: 700;
-    margin: 0;
-}
-
-.meet-besties {
-    padding: 0;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.besties-strips-container {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    gap: 0;
-}
-
-.bestie-strip {
-    flex: 1;
-    height: 100%;
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-    transition: flex 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.bestie-strip:hover {
-    flex: 2;
-}
-
-.strip-background {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    background-size: cover;
-    background-position: center;
-}
-
-.strip-info {
-    position: absolute;
-    bottom: 40px;
-    left: 0;
-    right: 0;
-    text-align: center;
-    color: white;
-    z-index: 10;
-    opacity: 0;
-    transition: opacity 0.6s ease;
-}
-
-.bestie-strip:hover .strip-info {
-    opacity: 1;
-}
-
-.strip-info h3 {
-    font-size: 2.5rem;
-    margin: 0 0 0.5rem;
-    font-weight: 700;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
-    background: none;
-    -webkit-text-fill-color: unset;
-}
-
-.strip-tagline {
-    font-size: 1.2rem;
-    margin: 0 0 1rem;
-    font-weight: 600;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-}
-
-.strip-bio {
-    font-size: 0.95rem;
-    margin: 0;
-    line-height: 1.5;
-    max-width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-}
-
-.strip-info p {
-    font-size: 1.2rem;
-    margin: 0;
-    font-weight: 500;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
-}
-
 .besties-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -1135,7 +1151,781 @@ section:nth-child(odd) {
     margin: 0.5rem 0 0;
 }
 
+/* Besties Profiles Section */
+.besties-profiles-section {
+    padding: 80px 20px;
+    background: white;
+}
+
+/* Besties Profiles Grid */
+.besties-profiles-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.besties-profiles-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.bestie-profile-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(255, 107, 157, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.bestie-profile-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 48px rgba(255, 107, 157, 0.2);
+    border-color: var(--besties-pink);
+}
+
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1.5rem 1.5rem;
+    background: linear-gradient(135deg, var(--besties-pink) 0%, var(--besties-purple) 100%);
+    color: white;
+}
+
+.profile-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    margin-bottom: 1rem;
+}
+
+.profile-title {
+    text-align: center;
+}
+
+.profile-title h4 {
+    font-size: 1.3rem;
+    color: white;
+    margin: 0.5rem 0 0;
+    font-weight: 700;
+}
+
+.profile-tagline {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0.5rem 0 0;
+}
+
+.profile-details {
+    padding: 1.5rem;
+}
+
+.detail-group {
+    margin-bottom: 1.2rem;
+}
+
+.detail-group:last-child {
+    margin-bottom: 0;
+}
+
+.detail-group h5 {
+    font-size: 0.95rem;
+    color: var(--besties-pink);
+    margin: 0 0 0.5rem 0;
+    font-weight: 600;
+}
+
+.detail-group p {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Blog Section */
+.blog-section {
+    padding: 80px 20px;
+    background: white;
+}
+
+.blog-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.blog-filters {
+    display: flex;
+    gap: 1rem;
+    margin: 3rem 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.blog-filter-btn {
+    padding: 10px 20px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    background: white;
+    color: #333;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.blog-filter-btn:hover {
+    border-color: var(--besties-pink);
+    color: var(--besties-pink);
+}
+
+.blog-filter-btn.active {
+    background: linear-gradient(135deg, var(--besties-pink) 0%, var(--besties-purple) 100%);
+    border-color: var(--besties-pink);
+    color: white;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.blog-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(255, 107, 157, 0.15);
+}
+
+.blog-image {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
+.blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.blog-card:hover .blog-image img {
+    transform: scale(1.05);
+}
+
+.blog-category {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--besties-pink);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.blog-content {
+    padding: 1.8rem;
+}
+
+.blog-content h3 {
+    font-size: 1.2rem;
+    color: var(--besties-pink);
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+}
+
+.blog-excerpt {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+}
+
+.blog-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+.blog-date {
+    color: #999;
+}
+
+.blog-read-more {
+    color: var(--besties-pink);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.blog-read-more:hover {
+    color: var(--besties-purple);
+    transform: translateX(4px);
+}
+
+/* Gallery Section */
+.gallery-section {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #FFF5F7 0%, #F9F3FF 100%);
+}
+
+.gallery-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gallery-tabs {
+    display: flex;
+    gap: 1rem;
+    margin: 3rem 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.gallery-tab-btn {
+    padding: 10px 20px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    background: white;
+    color: #333;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.gallery-tab-btn:hover {
+    border-color: var(--besties-pink);
+    color: var(--besties-pink);
+}
+
+.gallery-tab-btn.active {
+    background: linear-gradient(135deg, var(--besties-pink) 0%, var(--besties-purple) 100%);
+    border-color: var(--besties-pink);
+    color: white;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.gallery-item {
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gallery-image {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.gallery-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-image img {
+    transform: scale(1.1);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 107, 157, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-overlay svg {
+    width: 50px;
+    height: 50px;
+    color: white;
+}
+
+.gallery-item h3 {
+    margin-top: 1rem;
+    font-size: 1.05rem;
+    color: var(--besties-pink);
+    text-align: center;
+}
+
+/* Partnerships Section */
+.partnerships-section {
+    padding: 80px 20px;
+    background: white;
+}
+
+.partnerships-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.partnerships-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    margin-top: 3rem;
+}
+
+.partnerships-stats {
+    background: linear-gradient(135deg, var(--besties-lavender) 0%, #E8F0FF 100%);
+    padding: 3rem;
+    border-radius: 15px;
+}
+
+.partnerships-stats h3 {
+    color: var(--besties-pink);
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.stat-card h4 {
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--besties-pink) 0%, var(--besties-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.stat-card p {
+    color: #666;
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.partnership-opportunities {
+    text-align: center;
+}
+
+.partnership-opportunities h3 {
+    color: var(--besties-pink);
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+.opportunities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.opportunity-card {
+    background: white;
+    border: 2px solid #f0f0f0;
+    padding: 2rem;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.opportunity-card:hover {
+    border-color: var(--besties-pink);
+    box-shadow: 0 8px 25px rgba(255, 107, 157, 0.12);
+    transform: translateY(-4px);
+}
+
+.opportunity-card h4 {
+    color: var(--besties-pink);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.opportunity-card p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.opportunity-badge {
+    display: inline-block;
+    background: var(--besties-lavender);
+    color: var(--besties-pink);
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--besties-pink);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
 /* Conference Section */
+.conference {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #F0E6FF 0%, #FFF5F7 100%);
+}
+
+.conference-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.conference-hero {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.conference-hero h2 {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    background: linear-gradient(135deg, var(--besties-pink) 0%, var(--besties-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.conference-subtitle {
+    font-size: clamp(1.3rem, 5vw, 2rem);
+    color: var(--besties-purple);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.conference-tagline {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 0;
+}
+
+.conference-content {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 10px 40px rgba(255, 107, 157, 0.1);
+    margin-bottom: 3rem;
+}
+
+.conference-section {
+    margin-bottom: 3rem;
+}
+
+.conference-section:last-child {
+    margin-bottom: 0;
+}
+
+.conference-section h3 {
+    color: var(--besties-pink);
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
+    margin-bottom: 1.5rem;
+}
+
+.conference-section p {
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.focus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.focus-card {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.05) 0%, rgba(213, 166, 224, 0.05) 100%);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.focus-card:hover {
+    transform: translateY(-5px);
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.1) 0%, rgba(213, 166, 224, 0.1) 100%);
+}
+
+.focus-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.focus-card h4 {
+    color: var(--besties-pink);
+    margin-bottom: 0.5rem;
+}
+
+.focus-card p {
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.faq-container {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.faq-item {
+    padding: 1.5rem;
+    background: #F9F9F9;
+    border-radius: 10px;
+    border-left: 4px solid var(--besties-pink);
+}
+
+.faq-item h4 {
+    color: var(--besties-pink);
+    margin-bottom: 0.5rem;
+}
+
+.faq-item p {
+    margin: 0;
+    color: #555;
+}
+
+.parent-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.info-card {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.05) 0%, rgba(135, 206, 235, 0.05) 100%);
+    border-radius: 10px;
+}
+
+.info-card h4 {
+    color: var(--besties-pink);
+    margin-bottom: 0.5rem;
+}
+
+.info-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.conference-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.conference-section ul li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    color: #555;
+    position: relative;
+}
+
+.conference-section ul li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--besties-pink);
+    font-weight: bold;
+}
+
+.conference-cta {
+    text-align: center;
+    padding: 3rem;
+    background: linear-gradient(135deg, var(--besties-pink) 0%, var(--besties-purple) 100%);
+    border-radius: 20px;
+    color: white;
+}
+
+.conference-cta h3 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    color: white;
+    margin-bottom: 0.5rem;
+}
+
+.conference-cta p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Conference Registration Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #999;
+}
+
+.close:hover {
+    color: var(--besties-pink);
+}
+
+.modal-content h2 {
+    background: linear-gradient(135deg, var(--besties-pink) 0%, var(--besties-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.5rem;
+}
+
+.conference-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-row .form-group {
+    grid-column: auto;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--besties-pink);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.form-group input,
+.form-group textarea {
+    padding: 0.75rem;
+    border: 2px solid #E0E0E0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--besties-pink);
+}
+
 .conference {
     background: var(--white);
 }
@@ -2315,6 +3105,195 @@ section:nth-child(odd) {
     color: var(--white);
 }
 
+/* Club Section */
+.club-section {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #FFF5F7 0%, #F0E6FF 100%);
+}
+
+.club-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.club-hero {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.club-hero h2 {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    background: linear-gradient(135deg, var(--besties-pink) 0%, var(--besties-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+}
+
+.club-tagline {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 0;
+}
+
+.club-content {
+    background: white;
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 10px 40px rgba(255, 107, 157, 0.1);
+}
+
+.club-benefits {
+    margin-bottom: 3rem;
+}
+
+.club-benefits h3 {
+    text-align: center;
+    color: var(--besties-pink);
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
+    margin-bottom: 2rem;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.benefit-card {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.05) 0%, rgba(213, 166, 224, 0.05) 100%);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(255, 107, 157, 0.15);
+}
+
+.benefit-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.benefit-card h4 {
+    color: var(--besties-pink);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.benefit-card p {
+    font-size: 0.95rem;
+    color: #555;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.signup-box {
+    background: linear-gradient(135deg, var(--besties-pink) 0%, var(--besties-purple) 100%);
+    color: white;
+    padding: 2.5rem;
+    border-radius: 16px;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.signup-box h3 {
+    color: white;
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.signup-box p {
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1.5rem;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.signup-form .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.signup-form input,
+.signup-form select {
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.signup-form input:focus,
+.signup-form select:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.signup-form .checkbox {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.signup-form .checkbox input {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.signup-form .checkbox label {
+    color: rgba(255, 255, 255, 0.9);
+    cursor: pointer;
+    margin: 0;
+}
+
+.club-features {
+    margin-top: 3rem;
+}
+
+.club-features h3 {
+    text-align: center;
+    color: var(--besties-pink);
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
+    margin-bottom: 2rem;
+}
+
+.features-list {
+    display: grid;
+    gap: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.feature-item {
+    padding: 1.5rem;
+    background: #F9F9F9;
+    border-radius: 12px;
+    border-left: 4px solid var(--besties-pink);
+}
+
+.feature-item h4 {
+    color: var(--besties-pink);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.feature-item p {
+    color: #555;
+    margin: 0;
+    line-height: 1.6;
+}
+
 /* Footer */
 .footer {
     background: #ffffff;
@@ -2490,16 +3469,16 @@ section:nth-child(odd) {
         gap: 1rem;
     }
 
-    .nav-pill {
-        padding: 8px 12px;
-        width: 90%;
-        max-width: 300px;
-        font-size: 0.85rem;
+    .navbar {
+        top: 15px;
     }
 
-    .nav-item {
-        padding: 6px 10px;
-        font-size: 0.75rem;
+    .hamburger-menu {
+        display: flex;
+    }
+
+    .nav-pill {
+        display: none;
     }
 }
 
@@ -2594,15 +3573,12 @@ section:nth-child(odd) {
         gap: 1.5rem;
     }
 
-    .nav-pill {
-        padding: 10px 15px;
-        width: 90%;
-        max-width: 350px;
+    .hamburger-menu {
+        display: flex;
     }
 
-    .nav-item {
-        padding: 8px 12px;
-        font-size: 0.8rem;
+    .nav-pill {
+        display: none;
     }
 }
 
@@ -3589,10 +4565,6 @@ section:nth-child(odd) {
         margin-top: 2rem;
     }
 
-    .bestie-strip {
-        margin-bottom: 2rem;
-    }
-
     .cart-drawer {
         width: 90%;
     }
@@ -3738,6 +4710,56 @@ section:nth-child(odd) {
         padding: 12px;
         font-size: 16px;
     }
+
+    /* Blog Section Mobile */
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .blog-filters {
+        gap: 0.5rem;
+    }
+
+    .blog-filter-btn {
+        padding: 8px 14px;
+        font-size: 0.85rem;
+    }
+
+    /* Besties Profiles Mobile */
+    .besties-profiles-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Gallery Section Mobile */
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-tabs {
+        gap: 0.5rem;
+    }
+
+    .gallery-tab-btn {
+        padding: 8px 14px;
+        font-size: 0.85rem;
+    }
+
+    .gallery-image {
+        height: 200px;
+    }
+
+    /* Partnerships Section Mobile */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .opportunities-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Tablet Optimization (768px - 1024px) */
@@ -3802,6 +4824,10 @@ section:nth-child(odd) {
         gap: 20px;
     }
 
+    .besties-profiles-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
     h1 { font-size: 2.2rem; }
     h2 { font-size: 1.8rem; }
     h3 { font-size: 1.4rem; }
@@ -3843,26 +4869,6 @@ section:nth-child(odd) {
     .carousel-btn svg {
         width: 20px !important;
         height: 20px !important;
-    }
-
-    /* FIX #2: Meet Besties section responsive */
-    .meet-besties {
-        height: auto;
-        min-height: auto;
-    }
-
-    .besties-strips-container {
-        flex-direction: column;
-        height: auto;
-    }
-
-    .bestie-strip {
-        height: 200px;
-        flex: auto;
-    }
-
-    .bestie-strip:hover {
-        flex: auto;
     }
 
     /* FIX #3: Form inputs minimum 44px height for touch */
@@ -4029,19 +5035,6 @@ section:nth-child(odd) {
         height: 44px;
     }
 
-    /* Meet Besties responsive */
-    .meet-besties {
-        height: auto;
-    }
-
-    .besties-strips-container {
-        flex-direction: column;
-        height: auto;
-    }
-
-    .bestie-strip {
-        height: 250px;
-    }
 
     /* Shop grid 2 columns on larger phones */
     .shop-products-grid {
@@ -4243,7 +5236,12 @@ section:nth-child(odd) {
 <body>
     <!-- Navigation -->
     <nav class="navbar">
-        <div class="nav-pill">
+        <button class="hamburger-menu" id="hamburgerMenu" aria-label="Toggle navigation menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <div class="nav-pill" id="navPill">
             <a href="#home" class="nav-item" title="Home">
                 <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
@@ -4284,6 +5282,38 @@ section:nth-child(odd) {
             </button>
         </div>
     </nav>
+
+    <!-- Mobile Menu Drawer -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-content">
+            <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Close menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="mobile-menu-items">
+                <a href="#home" class="mobile-menu-item">Home</a>
+                <a href="#about" class="mobile-menu-item">About</a>
+                <a href="#besties-profiles" class="mobile-menu-item">Besties</a>
+                <a href="#podcast" class="mobile-menu-item">Podcast</a>
+                <a href="#blog" class="mobile-menu-item">Blog</a>
+                <a href="#gallery" class="mobile-menu-item">Gallery</a>
+                <a href="#partnerships" class="mobile-menu-item">Partnerships</a>
+                <a href="#experiences" class="mobile-menu-item">Shop</a>
+                <a href="#club" class="mobile-menu-item">Club</a>
+                <a href="#contact" class="mobile-menu-item">Contact</a>
+                <button class="mobile-menu-item mobile-menu-cart" id="mobileCartBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    Cart
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -4326,7 +5356,38 @@ section:nth-child(odd) {
                 </div>
                 <div class="story-image">
                     <img src="assets/image_5.jpg" alt="The Four Besties" class="story-image-photo">
-                    <img src="assets/image_6.jpg" alt="Besties Host" class="story-image-hover">
+                </div>
+            </div>
+
+            <!-- Core Values Section -->
+            <div class="values-section">
+                <h3>Our Core Values</h3>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">💜</div>
+                        <h4>Friendship</h4>
+                        <p>We celebrate meaningful connections and the power of standing by each other.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">✨</div>
+                        <h4>Confidence</h4>
+                        <p>We believe every girl has unique strengths and should embrace who she truly is.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🌟</div>
+                        <h4>Creativity</h4>
+                        <p>We encourage self-expression through art, ideas, and authentic storytelling.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🚀</div>
+                        <h4>Dream Big</h4>
+                        <p>We inspire girls to chase their ambitions and believe anything is possible.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🤝</div>
+                        <h4>Kindness</h4>
+                        <p>We foster a safe, inclusive community where everyone belongs and is valued.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -4469,6 +5530,66 @@ section:nth-child(odd) {
                     <h3>Dream Big Water Bottle</h3>
                     <p class="product-sizes">750ml, 1L</p>
                     <div class="experience-price">$29.99</div>
+                    <button class="btn btn-primary experience-book">Add to Cart</button>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-image">
+                        <img src="assets/image_22.jpg" alt="Besties Sports Jersey">
+                    </div>
+                    <h3>Besties Sports Jersey</h3>
+                    <p class="product-sizes">XS, S, M, L, XL</p>
+                    <div class="experience-price">$34.99</div>
+                    <button class="btn btn-primary experience-book">Add to Cart</button>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-image">
+                        <img src="assets/image_23.jpg" alt="Besties Dream Journal">
+                    </div>
+                    <h3>Besties Dream Journal</h3>
+                    <p class="product-sizes">One Size</p>
+                    <div class="experience-price">$16.99</div>
+                    <button class="btn btn-primary experience-book">Add to Cart</button>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-image">
+                        <img src="assets/image_24.jpg" alt="Confidence Pencil Case">
+                    </div>
+                    <h3>Confidence Pencil Case</h3>
+                    <p class="product-sizes">One Size</p>
+                    <div class="experience-price">$12.99</div>
+                    <button class="btn btn-primary experience-book">Add to Cart</button>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-image">
+                        <img src="assets/image_25.jpg" alt="Friendship Sticker Pack">
+                    </div>
+                    <h3>Friendship Sticker Pack</h3>
+                    <p class="product-sizes">50+ Stickers</p>
+                    <div class="experience-price">$9.99</div>
+                    <button class="btn btn-primary experience-book">Add to Cart</button>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-image">
+                        <img src="assets/image_26.jpg" alt="Dream Passport">
+                    </div>
+                    <h3>Dream Passport</h3>
+                    <p class="product-sizes">One Size</p>
+                    <div class="experience-price">$19.99</div>
+                    <button class="btn btn-primary experience-book">Add to Cart</button>
+                </div>
+
+                <div class="experience-card featured">
+                    <div class="experience-image">
+                        <img src="assets/image_27.jpg" alt="Conference Kit Bundle">
+                    </div>
+                    <h3>Conference Kit Bundle</h3>
+                    <p class="product-sizes">Complete Set</p>
+                    <div class="experience-price">$49.99</div>
                     <button class="btn btn-primary experience-book">Add to Cart</button>
                 </div>
                     </div>
@@ -4724,47 +5845,719 @@ section:nth-child(odd) {
         </div>
     </div>
 
-    <!-- Meet the Besties Section -->
-    <section class="meet-besties-wrapper" id="besties">
-        <h2 class="meet-besties-title">Meet The Besties</h2>
-        <div class="meet-besties">
-            <div class="besties-strips-container">
-            <div class="bestie-strip" data-bestie="barbette">
-                <div class="strip-background" style="background-image: url('assets/image_18.jpg');"></div>
-                <div class="strip-info">
-                    <h3>BARBETTE</h3>
-                    <p class="strip-tagline">Shine Bright</p>
-                    <p class="strip-bio">The visionary and creative spark of the group. Barbette brings bold ideas and infectious energy that inspires everyone around her to dream bigger.</p>
+    <!-- Besties Profiles Section -->
+    <section class="besties-profiles-section" id="besties-profiles">
+        <div class="besties-profiles-container">
+            <h2 class="section-title">Get to Know Each Bestie</h2>
+            <p class="section-subtitle">Meet the girls behind the magic</p>
+            <div class="besties-profiles-grid">
+                <!-- Barbette Profile -->
+                <div class="bestie-profile-card">
+                    <div class="profile-header">
+                        <img src="assets/image_18.jpg" alt="Barbette" class="profile-photo">
+                        <div class="profile-title">
+                            <h4>BARBETTE</h4>
+                            <p class="profile-tagline">Shine Bright ✨</p>
+                        </div>
+                    </div>
+                    <div class="profile-details">
+                        <div class="detail-group">
+                            <h5>🎨 Fun Facts</h5>
+                            <p>Loves photography and creating visual art. Has a hidden talent for making everyone laugh.</p>
+                        </div>
+                        <div class="detail-group">
+                            <h5>🎯 Hobbies</h5>
+                            <p>Digital design, podcast editing, creative writing, vlogging</p>
+                        </div>
+                        <div class="detail-group">
+                            <h5>🍕 Favorite Food</h5>
+                            <p>Italian pasta and homemade chocolate chip cookies</p>
+                        </div>
+                        <div class="detail-group">
+                            <h5>🚀 Dream Career</h5>
+                            <p>Creative director or digital content creator</p>
+                        </div>
+                        <div class="detail-group">
+                            <h5>💝 Personality Traits</h5>
+                            <p>Visionary, creative, encouraging, bold</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="bestie-strip" data-bestie="jane">
-                <div class="strip-background" style="background-image: url('assets/image_19.jpg');"></div>
-                <div class="strip-info">
-                    <h3>JANE DOE</h3>
-                    <p class="strip-tagline">Be Confident</p>
-                    <p class="strip-bio">The optimistic cheerleader who lifts everyone up with positivity and grace. Jane's warmth and genuine care make her the heart of the Besties.</p>
+                <!-- Jane Doe Profile -->
+                <div class="bestie-profile-card">
+                    <div class="profile-header">
+                        <img src="assets/image_19.jpg" alt="Jane Doe" class="profile-photo">
+                        <div class="profile-title">
+                            <h4>JANE DOE</h4>
+                            <p class="profile-tagline">Be Confident 💪</p>
+                        </div>
+                    </div>
+                    <div class="profile-details">
+                        <div class="detail-group">
+                            <h5>🎨 Fun Facts</h5>
+                            <p>Can speak three languages and loves mentoring younger kids.</p>
+                        </div>
+                        <div class="detail-group">
+                            <h5>🎯 Hobbies</h5>
+                            <p>Volunteering, playing soccer, reading, community service</p>
+                        </div>
+                        <div class="detail-group">
+                            <h5>🍕 Favorite Food</h5>
+                            <p>Sushi and fresh fruit smoothies</p>
+                        </div>
+                        <div class="detail-group">
+                            <h5>🚀 Dream Career</h5>
+                            <p>Social worker or nonprofit leader making a difference</p>
+                        </div>
+                        <div class="detail-group">
+                            <h5>💝 Personality Traits</h5>
+                            <p>Compassionate, optimistic, uplifting, genuine</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="bestie-strip" data-bestie="kelly">
-                <div class="strip-background" style="background-image: url('assets/image_20.jpg');"></div>
-                <div class="strip-info">
-                    <h3>KELLY</h3>
-                    <p class="strip-tagline">Dream Big</p>
-                    <p class="strip-bio">The fearless adventurer who isn't afraid to take risks and explore new possibilities. Kelly's courage inspires the group to push their boundaries.</p>
+                <!-- Kelly Profile -->
+                <div class="bestie-profile-card">
+                    <div class="profile-header">
+                        <img src="assets/image_20.jpg" alt="Kelly" class="profile-photo">
+                        <div class="profile-title">
+                            <h4>KELLY</h4>
+                            <p class="profile-tagline">Dream Big 🌟</p>
+                        </div>
+                    </div>
+                    <div class="profile-details">
+                        <div class="detail-group">
+                            <h5>🎨 Fun Facts</h5>
+                            <p>An adventurer at heart who's traveled to 5 continents. Incredible athlete.</p>
+                        </div>
+                        <div class="detail-group">
+                            <h5>🎯 Hobbies</h5>
+                            <p>Hiking, rock climbing, skateboarding, exploring new places</p>
+                        </div>
+                        <div class="detail-group">
+                            <h5>🍕 Favorite Food</h5>
+                            <p>Tacos and adventure snacks (trail mix and granola)</p>
+                        </div>
+                        <div class="detail-group">
+                            <h5>🚀 Dream Career</h5>
+                            <p>Travel journalist or professional athlete</p>
+                        </div>
+                        <div class="detail-group">
+                            <h5>💝 Personality Traits</h5>
+                            <p>Adventurous, fearless, energetic, inspiring</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="bestie-strip" data-bestie="viphine">
-                <div class="strip-background" style="background-image: url('assets/image_21.jpg');"></div>
-                <div class="strip-info">
-                    <h3>VIPHINE</h3>
-                    <p class="strip-tagline">Lead with Heart</p>
-                    <p class="strip-bio">The compassionate leader who always knows the right thing to say. Viphine's wisdom and emotional intelligence guide the group through every challenge.</p>
+                <!-- Viphine Profile -->
+                <div class="bestie-profile-card">
+                    <div class="profile-header">
+                        <img src="assets/image_21.jpg" alt="Viphine" class="profile-photo">
+                        <div class="profile-title">
+                            <h4>VIPHINE</h4>
+                            <p class="profile-tagline">Lead with Heart 💜</p>
+                        </div>
+                    </div>
+                    <div class="profile-details">
+                        <div class="detail-group">
+                            <h5>🎨 Fun Facts</h5>
+                            <p>Natural leader since childhood. Excellent listener who always gives the best advice.</p>
+                        </div>
+                        <div class="detail-group">
+                            <h5>🎯 Hobbies</h5>
+                            <p>Journaling, music production, hosting events, deep conversations</p>
+                        </div>
+                        <div class="detail-group">
+                            <h5>🍕 Favorite Food</h5>
+                            <p>Mediterranean cuisine and homemade baked goods</p>
+                        </div>
+                        <div class="detail-group">
+                            <h5>🚀 Dream Career</h5>
+                            <p>Psychology counselor or life coach</p>
+                        </div>
+                        <div class="detail-group">
+                            <h5>💝 Personality Traits</h5>
+                            <p>Wise, empathetic, supportive, thoughtful</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog-section" id="blog">
+        <div class="blog-container">
+            <h2 class="section-title">Besties Blog</h2>
+            <p class="section-subtitle">Tips, stories, and inspiration for your best self</p>
+
+            <div class="blog-filters">
+                <button class="blog-filter-btn active" data-category="all">All</button>
+                <button class="blog-filter-btn" data-category="friendship">Friendship Tips</button>
+                <button class="blog-filter-btn" data-category="confidence">Confidence Building</button>
+                <button class="blog-filter-btn" data-category="school">School Life</button>
+                <button class="blog-filter-btn" data-category="goals">Goal Setting</button>
+                <button class="blog-filter-btn" data-category="creative">Creative Activities</button>
+            </div>
+
+            <div class="blog-grid">
+                <article class="blog-card" data-category="friendship">
+                    <div class="blog-image">
+                        <img src="assets/image_28.jpg" alt="How to Be a Better Friend">
+                        <span class="blog-category">Friendship Tips</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3>How to Be a Better Friend</h3>
+                        <p class="blog-excerpt">Discover the secrets to deepening your friendships and being the kind of friend others want to have. Learn active listening, empathy, and communication tips.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">June 15, 2024</span>
+                            <a href="#" class="blog-read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="confidence">
+                    <div class="blog-image">
+                        <img src="assets/image_29.jpg" alt="Overcoming Self-Doubt">
+                        <span class="blog-category">Confidence Building</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3>Overcoming Self-Doubt</h3>
+                        <p class="blog-excerpt">Everyone experiences self-doubt. Learn practical strategies to build your confidence and silence that inner critic. You're more amazing than you think!</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">June 10, 2024</span>
+                            <a href="#" class="blog-read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="school">
+                    <div class="blog-image">
+                        <img src="assets/image_30.jpg" alt="Navigating Middle School">
+                        <span class="blog-category">School Life</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3>Navigating Middle School with Confidence</h3>
+                        <p class="blog-excerpt">Middle school can feel overwhelming, but you've got this! Get advice on making friends, handling peer pressure, and finding your place at school.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">June 5, 2024</span>
+                            <a href="#" class="blog-read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="goals">
+                    <div class="blog-image">
+                        <img src="assets/image_31.jpg" alt="Setting and Achieving Goals">
+                        <span class="blog-category">Goal Setting</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3>Setting and Achieving Your Goals</h3>
+                        <p class="blog-excerpt">Dream big, but don't forget the steps! Learn how to set realistic goals, create action plans, and celebrate your wins along the way.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">May 30, 2024</span>
+                            <a href="#" class="blog-read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="creative">
+                    <div class="blog-image">
+                        <img src="assets/image_32.jpg" alt="Express Yourself Creatively">
+                        <span class="blog-category">Creative Activities</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3>Express Yourself Creatively</h3>
+                        <p class="blog-excerpt">Whether it's art, music, writing, or dance, discover ways to express your unique creativity and find your voice. Your ideas matter!</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">May 25, 2024</span>
+                            <a href="#" class="blog-read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="friendship">
+                    <div class="blog-image">
+                        <img src="assets/image_33.jpg" alt="Podcast Recap: New Episode">
+                        <span class="blog-category">Friendship Tips</span>
+                    </div>
+                    <div class="blog-content">
+                        <h3>Podcast Recap: Real Talk with Real Girls</h3>
+                        <p class="blog-excerpt">Catch up on our latest podcast episode where we discuss friendship drama, standing up for what's right, and staying true to yourself.</p>
+                        <div class="blog-meta">
+                            <span class="blog-date">May 20, 2024</span>
+                            <a href="#" class="blog-read-more">Read More →</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery-section" id="gallery">
+        <div class="gallery-container">
+            <h2 class="section-title">Besties Gallery</h2>
+            <p class="section-subtitle">Behind the scenes and moments that matter</p>
+
+            <div class="gallery-tabs">
+                <button class="gallery-tab-btn active" data-filter="all">All</button>
+                <button class="gallery-tab-btn" data-filter="podcast">Podcast</button>
+                <button class="gallery-tab-btn" data-filter="events">Events</button>
+                <button class="gallery-tab-btn" data-filter="conference">Conference</button>
+                <button class="gallery-tab-btn" data-filter="behind">Behind the Scenes</button>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item" data-filter="podcast">
+                    <div class="gallery-image">
+                        <img src="assets/image_34.jpg" alt="Podcast Recording Session">
+                        <div class="gallery-overlay">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3>Latest Podcast Episode</h3>
+                </div>
+
+                <div class="gallery-item" data-filter="events">
+                    <div class="gallery-image">
+                        <img src="assets/image_35.jpg" alt="Besties Meetup Event">
+                        <div class="gallery-overlay">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3>Summer Meetup Fun</h3>
+                </div>
+
+                <div class="gallery-item" data-filter="conference">
+                    <div class="gallery-image">
+                        <img src="assets/image_36.jpg" alt="Conference Highlights">
+                        <div class="gallery-overlay">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3>Made to Shine Conference</h3>
+                </div>
+
+                <div class="gallery-item" data-filter="behind">
+                    <div class="gallery-image">
+                        <img src="assets/image_37.jpg" alt="Behind the Scenes">
+                        <div class="gallery-overlay">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3>Production Moments</h3>
+                </div>
+
+                <div class="gallery-item" data-filter="podcast">
+                    <div class="gallery-image">
+                        <img src="assets/image_38.jpg" alt="Guest Interview">
+                        <div class="gallery-overlay">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3>Guest Interview Special</h3>
+                </div>
+
+                <div class="gallery-item" data-filter="events">
+                    <div class="gallery-image">
+                        <img src="assets/image_39.jpg" alt="Girls Connect">
+                        <div class="gallery-overlay">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3>Besties Connect Event</h3>
+                </div>
+
+                <div class="gallery-item" data-filter="conference">
+                    <div class="gallery-image">
+                        <img src="assets/image_40.jpg" alt="Workshop Fun">
+                        <div class="gallery-overlay">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3>Interactive Workshops</h3>
+                </div>
+
+                <div class="gallery-item" data-filter="behind">
+                    <div class="gallery-image">
+                        <img src="assets/image_41.jpg" alt="Team Vibes">
+                        <div class="gallery-overlay">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3>Our Amazing Team</h3>
+                </div>
+
+                <div class="gallery-item" data-filter="events">
+                    <div class="gallery-image">
+                        <img src="assets/image_42.jpg" alt="Community Spotlight">
+                        <div class="gallery-overlay">
+                            <svg viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                            </svg>
+                        </div>
+                    </div>
+                    <h3>Community Spotlight</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conference Section -->
+    <section class="conference" id="conference">
+        <div class="conference-container">
+            <div class="conference-hero">
+                <h2>Besties Conference</h2>
+                <h3 class="conference-subtitle">MADE TO SHINE ✨</h3>
+                <p class="conference-tagline">Where friendship, confidence, and dreams come to life</p>
+            </div>
+
+            <div class="conference-content">
+                <!-- Event Overview -->
+                <div class="conference-section">
+                    <h3>About the Conference</h3>
+                    <p>The annual Besties Conference "Made to Shine" is a transformative experience designed for girls aged 8-12. It's a day filled with workshops, activities, and inspiration that celebrates friendship, builds confidence, and encourages girls to dream bigger.</p>
+                    <p>Join hundreds of girls as we explore what it means to be confident, creative, and kind. Meet the Besties hosts, participate in interactive workshops, and connect with girls who share your values.</p>
+                </div>
+
+                <!-- Focus Areas -->
+                <div class="conference-section">
+                    <h3>What We Focus On</h3>
+                    <div class="focus-grid">
+                        <div class="focus-card">
+                            <div class="focus-icon">💪</div>
+                            <h4>Confidence</h4>
+                            <p>Build self-esteem and embrace who you are</p>
+                        </div>
+                        <div class="focus-card">
+                            <div class="focus-icon">💜</div>
+                            <h4>Friendship</h4>
+                            <p>Strengthen bonds and make meaningful connections</p>
+                        </div>
+                        <div class="focus-card">
+                            <div class="focus-icon">✨</div>
+                            <h4>Leadership</h4>
+                            <p>Discover your inner leader and make a difference</p>
+                        </div>
+                        <div class="focus-card">
+                            <div class="focus-icon">🎨</div>
+                            <h4>Creativity</h4>
+                            <p>Express yourself through art and ideas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ -->
+                <div class="conference-section">
+                    <h3>Frequently Asked Questions</h3>
+                    <div class="faq-container">
+                        <div class="faq-item">
+                            <h4>Who can attend?</h4>
+                            <p>Girls aged 8-12 and their parents/guardians. Group registrations from schools are also welcome!</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>What should I bring?</h4>
+                            <p>Bring a notebook for taking notes, water bottle, and your enthusiasm! We'll provide conference materials and snacks.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>Is there lunch included?</h4>
+                            <p>Yes! A healthy, delicious lunch and snacks are included with your conference registration.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>Can I bring a group from my school?</h4>
+                            <p>Absolutely! We offer group discounts and have special coordinators to help school groups. Contact us for details.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>What's the schedule?</h4>
+                            <p>Doors open at 8:30 AM with activities running until 5:00 PM. Full detailed schedule provided upon registration.</p>
+                        </div>
+                        <div class="faq-item">
+                            <h4>Will the Besties hosts be there?</h4>
+                            <p>Yes! Meet and interact with Barbette, Jane Doe, Kelly, and Viphine throughout the day.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Parent Information -->
+                <div class="conference-section">
+                    <h3>For Parents & Guardians</h3>
+                    <p>The Besties Conference is designed to be a safe, empowering experience for young girls. We maintain strict supervision, age-appropriate content, and a focus on positive values.</p>
+                    <div class="parent-info-grid">
+                        <div class="info-card">
+                            <h4>✅ Safety First</h4>
+                            <p>All staff are trained and background-checked. We maintain a 1:10 adult-to-child ratio.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>📝 Parent Resources</h4>
+                            <p>Receive daily updates and a detailed conference guide for continued conversations at home.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>🎓 Learning Outcomes</h4>
+                            <p>Girls leave with increased confidence, new friendships, and practical skills for everyday life.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- School Participation -->
+                <div class="conference-section">
+                    <h3>School Participation</h3>
+                    <p>Schools can register groups of 10 or more students and receive special group pricing. We provide materials for teachers to prepare students before the conference and follow-up activities afterward.</p>
+                    <p><strong>For school inquiries:</strong> Contact us directly for custom group rates and coordination.</p>
+                </div>
+
+                <!-- Sponsorship -->
+                <div class="conference-section">
+                    <h3>Partnership Opportunities</h3>
+                    <p>Interested in sponsoring the Besties Conference? We partner with brands that share our values of empowering girls. Sponsorship packages include:</p>
+                    <ul style="max-width: 600px; margin: 1.5rem auto;">
+                        <li>Brand visibility throughout the event</li>
+                        <li>Booth or sponsorship recognition</li>
+                        <li>Attendee engagement opportunities</li>
+                        <li>Media coverage and social promotion</li>
+                    </ul>
+                    <p style="text-align: center;">
+                        <a href="#contact" class="btn btn-primary" style="display: inline-block;">Become a Sponsor</a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="conference-cta">
+                <h3>Ready to Shine?</h3>
+                <p>Registration is now open for the next Besties Conference!</p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary" onclick="document.getElementById('conferenceModal').style.display='block'">Register Now</button>
+                    <button class="btn btn-secondary" onclick="document.getElementById('conferenceModal').style.display='block'">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Conference Registration Modal -->
+    <div id="conferenceModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="document.getElementById('conferenceModal').style.display='none'">&times;</span>
+            <h2>Besties Conference Registration</h2>
+            <form class="conference-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Girl's Full Name</label>
+                        <input type="text" placeholder="First and Last Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Age</label>
+                        <input type="number" min="8" max="12" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Parent/Guardian Name</label>
+                        <input type="text" placeholder="Your Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Email" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input type="tel" placeholder="Phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>School/Organization</label>
+                        <input type="text" placeholder="Optional">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Special Requests or Dietary Restrictions</label>
+                    <textarea placeholder="Let us know if there's anything we should know..." rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1.5rem;">Complete Registration</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Partnerships Section -->
+    <section class="partnerships-section" id="partnerships">
+        <div class="partnerships-container">
+            <h2 class="section-title">Partnerships & Sponsorships</h2>
+            <p class="section-subtitle">Join us in empowering the next generation</p>
+
+            <div class="partnerships-content">
+                <!-- Audience Statistics -->
+                <div class="partnerships-stats">
+                    <h3>Why Partner with Besties?</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h4>50K+</h4>
+                            <p>Active Monthly Listeners</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>80%</h4>
+                            <p>Audience: Ages 8-14</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>100K+</h4>
+                            <p>Social Media Followers</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>25+</h4>
+                            <p>Conference Attendees</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Partnership Opportunities -->
+                <div class="partnership-opportunities">
+                    <h3>Partnership Opportunities</h3>
+                    <div class="opportunities-grid">
+                        <div class="opportunity-card">
+                            <h4>🎙️ Podcast Sponsorship</h4>
+                            <p>Reach our engaged audience through sponsored episodes and host integration. Connect your brand with girls who value friendship, confidence, and creativity.</p>
+                            <span class="opportunity-badge">Starting at $500/month</span>
+                        </div>
+
+                        <div class="opportunity-card">
+                            <h4>📢 Social Media Features</h4>
+                            <p>Showcase your brand across our Instagram, TikTok, and YouTube channels. Get featured in our Stories, Reels, and community spotlights.</p>
+                            <span class="opportunity-badge">Custom Packages</span>
+                        </div>
+
+                        <div class="opportunity-card">
+                            <h4>🎪 Event Sponsorship</h4>
+                            <p>Be part of the Besties Conference and exclusive event experiences. Connect directly with our community at conferences, meetups, and community events.</p>
+                            <span class="opportunity-badge">Gold | Silver | Bronze</span>
+                        </div>
+
+                        <div class="opportunity-card">
+                            <h4>🛍️ Product Partnerships</h4>
+                            <p>Collaborate on exclusive Besties products and merchandise. Feature your products in our shop and reach thousands of engaged customers.</p>
+                            <span class="opportunity-badge">White Label Available</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Besties Club / Newsletter Section -->
+    <section class="club-section" id="club">
+        <div class="club-container">
+            <div class="club-hero">
+                <h2>Join the Besties Club</h2>
+                <p class="club-tagline">Be part of a community where every girl belongs</p>
+            </div>
+
+            <div class="club-content">
+                <!-- Club Benefits -->
+                <div class="club-benefits">
+                    <h3>What's Inside the Club?</h3>
+                    <div class="benefits-grid">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">📧</div>
+                            <h4>Exclusive Updates</h4>
+                            <p>Be the first to hear about new podcast episodes, merchandise drops, and events.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🎉</div>
+                            <h4>Birthday Celebrations</h4>
+                            <p>Get a special birthday shoutout from the Besties and exclusive birthday surprises!</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🏆</div>
+                            <h4>Monthly Challenges</h4>
+                            <p>Participate in fun monthly challenges and be featured as "Besties of the Month."</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🎨</div>
+                            <h4>Creative Submissions</h4>
+                            <p>Share your art, writing, and creations with the Besties community.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">💬</div>
+                            <h4>Community Connection</h4>
+                            <p>Connect with girls who share your values and interests in a safe space.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🎁</div>
+                            <h4>Exclusive Deals</h4>
+                            <p>Members get special discounts on shop items and conference registrations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Signup Form -->
+                <div class="signup-box">
+                    <h3>Sign Up Today</h3>
+                    <p>It's free and takes less than a minute!</p>
+                    <form class="signup-form" id="clubSignupForm">
+                        <div class="form-group">
+                            <input type="email" placeholder="Parent/Guardian Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" placeholder="Girl's First Name" required>
+                        </div>
+                        <div class="form-group">
+                            <select required>
+                                <option value="">Select Age</option>
+                                <option value="8">8 years old</option>
+                                <option value="9">9 years old</option>
+                                <option value="10">10 years old</option>
+                                <option value="11">11 years old</option>
+                                <option value="12">12 years old</option>
+                            </select>
+                        </div>
+                        <div class="form-group checkbox">
+                            <input type="checkbox" id="terms" required>
+                            <label for="terms">I agree to receive updates from Besties</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Join the Besties Club</button>
+                    </form>
+                </div>
+
+                <!-- Club Features -->
+                <div class="club-features">
+                    <h3>Club Features You'll Love</h3>
+                    <div class="features-list">
+                        <div class="feature-item">
+                            <h4>🌟 Besties of the Month</h4>
+                            <p>Each month, we celebrate amazing members who shine in our community. Nominated by peers and recognized by the Besties hosts themselves!</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>📝 Monthly Challenges</h4>
+                            <p>Fun, confidence-building challenges designed to encourage creativity, kindness, and personal growth. Complete them and share your story!</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>🎨 Creative Showcase</h4>
+                            <p>Submit your art, poetry, music, videos, and more. Your creations might be featured on Besties' social channels and website!</p>
+                        </div>
+                        <div class="feature-item">
+                            <h4>💌 Personal Connection</h4>
+                            <p>Parents and guardians stay informed while girls build confidence. Safe, parent-approved community engagement.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -4869,6 +6662,97 @@ if (cartIcon && cartDrawer && cartOverlay) {
     };
 }
 
+// ===== BLOG FILTERING =====
+const blogFilterBtns = document.querySelectorAll('.blog-filter-btn');
+const blogCards = document.querySelectorAll('.blog-card');
+
+blogFilterBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+        const category = this.getAttribute('data-category');
+
+        blogFilterBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
+        blogCards.forEach(card => {
+            if (category === 'all' || card.getAttribute('data-category') === category) {
+                card.style.display = '';
+                setTimeout(() => card.style.opacity = '1', 10);
+            } else {
+                card.style.opacity = '0';
+                setTimeout(() => card.style.display = 'none', 300);
+            }
+        });
+    });
+});
+
+// ===== GALLERY FILTERING =====
+const galleryTabBtns = document.querySelectorAll('.gallery-tab-btn');
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+galleryTabBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
+        const filter = this.getAttribute('data-filter');
+
+        galleryTabBtns.forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
+        galleryItems.forEach(item => {
+            if (filter === 'all' || item.getAttribute('data-filter') === filter) {
+                item.style.display = '';
+                setTimeout(() => item.style.opacity = '1', 10);
+            } else {
+                item.style.opacity = '0';
+                setTimeout(() => item.style.display = 'none', 300);
+            }
+        });
+    });
+});
+
+// ===== HAMBURGER MENU =====
+const hamburgerMenu = document.getElementById('hamburgerMenu');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileMenuClose = document.getElementById('mobileMenuClose');
+const mobileMenuItems = document.querySelectorAll('.mobile-menu-item');
+const navPill = document.getElementById('navPill');
+const mobileCartBtn = document.getElementById('mobileCartBtn');
+
+function closeMobileMenu() {
+    hamburgerMenu.classList.remove('active');
+    mobileMenu.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+if (hamburgerMenu) {
+    hamburgerMenu.onclick = function() {
+        hamburgerMenu.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    };
+}
+
+if (mobileMenuClose) {
+    mobileMenuClose.onclick = closeMobileMenu;
+}
+
+mobileMenuItems.forEach(item => {
+    item.onclick = function() {
+        closeMobileMenu();
+    };
+});
+
+if (mobileCartBtn) {
+    mobileCartBtn.onclick = function() {
+        closeMobileMenu();
+        if (cartIcon) cartIcon.click();
+    };
+}
+
+mobileMenu.onclick = function(e) {
+    if (e.target === mobileMenu) {
+        closeMobileMenu();
+    };
+};
+
 // ===== HERO BUTTON HANDLERS =====
 const heroCTAs = document.querySelectorAll('.hero-ctas .btn');
 if (heroCTAs && heroCTAs.length >= 3) {
@@ -4877,7 +6761,7 @@ if (heroCTAs && heroCTAs.length >= 3) {
         if (el) el.scrollIntoView({ behavior: 'smooth' });
     };
     heroCTAs[1].onclick = function() {
-        const el = document.querySelector('.meet-besties-wrapper');
+        const el = document.getElementById('besties-profiles');
         if (el) el.scrollIntoView({ behavior: 'smooth' });
     };
     heroCTAs[2].onclick = function() {
