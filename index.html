@@ -97,7 +97,7 @@ p {
 .btn {
     padding: clamp(10px, 2vw, 12px) clamp(18px, 4vw, 24px);
     border: none;
-    border-radius: 25px;
+    border-radius: 4px;
     font-size: clamp(0.75rem, 2.5vw, 1rem);
     min-height: 44px;
     display: inline-flex;
@@ -105,32 +105,40 @@ p {
     justify-content: center;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     text-decoration: none;
-    display: inline-block;
     text-align: center;
+    pointer-events: auto;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--besties-pink) 0%, var(--besties-purple) 100%);
+    background: var(--besties-pink);
     color: var(--white);
-    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+    border: 2px solid var(--besties-pink);
 }
 
 .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+    opacity: 0.9;
+    transform: none;
+}
+
+.btn-primary:active {
+    opacity: 0.8;
 }
 
 .btn-secondary {
-    background: var(--sky-blue);
-    color: var(--white);
-    border: 2px solid var(--sky-blue);
+    background: white;
+    color: var(--besties-pink);
+    border: 2px solid var(--besties-pink);
 }
 
 .btn-secondary:hover {
-    background: var(--white);
-    color: var(--sky-blue);
+    background: #f9f9f9;
+    transform: none;
+}
+
+.btn-secondary:active {
+    background: #f0f0f0;
 }
 
 .btn-small {
@@ -146,6 +154,146 @@ p {
     padding: clamp(12px, 2.5vw, 15px) clamp(24px, 5vw, 35px);
     font-size: clamp(0.85rem, 2.75vw, 1.1rem);
     min-height: 48px;
+}
+
+/* Mission Highlight Section */
+.mission-highlight-section {
+    background: #ffffff;
+    padding: 80px 20px;
+}
+
+.mission-highlight-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.mission-highlight-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.mission-highlight-title {
+    font-size: clamp(2.5rem, 7vw, 4rem);
+    font-weight: 800;
+    font-family: 'Childlike', 'Fredoka', sans-serif;
+    line-height: 1.2;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.title-part-bold {
+    color: var(--besties-pink);
+    display: block;
+}
+
+.title-part-outline {
+    display: block;
+    color: transparent;
+    -webkit-text-stroke: 2px var(--besties-purple);
+}
+
+.mission-highlight-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: var(--besties-purple);
+    font-weight: 500;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.mission-highlight-quote {
+    background: #f9f9f9;
+    padding: 3rem;
+    border-radius: 0;
+    border-left: 4px solid var(--besties-pink);
+}
+
+.mission-highlight-quote p {
+    margin: 0;
+    font-size: 1.15rem;
+    font-style: italic;
+    color: #333;
+    line-height: 1.8;
+    font-weight: 500;
+}
+
+/* Stats Section */
+.stats-section {
+    background: white;
+    padding: 80px 20px;
+    border-top: 2px solid var(--besties-lavender);
+}
+
+.stats-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.stats-title {
+    text-align: center;
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    background: linear-gradient(135deg, var(--besties-pink) 0%, var(--besties-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 4rem;
+    font-weight: 700;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 2.5rem 2rem;
+    background: #ffffff;
+    border-radius: 15px;
+    border: 2px solid var(--besties-lavender);
+    transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+    border-color: var(--besties-pink);
+}
+
+.stat-number {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    background: linear-gradient(135deg, var(--besties-pink) 0%, var(--besties-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+    margin: 0;
+    font-family: 'Childlike', 'Fredoka', sans-serif;
+}
+
+.stat-label {
+    color: var(--besties-purple);
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 0.8rem 0 0 0;
+}
+
+/* Announcement Bar */
+.announcement-bar {
+    background: var(--besties-pink);
+    color: white;
+    text-align: center;
+    padding: 12px 20px;
+    font-weight: 500;
+    font-size: clamp(0.85rem, 2vw, 1rem);
+}
+
+.announcement-bar p {
+    margin: 0;
+    padding: 0;
 }
 
 /* Navigation */
@@ -168,8 +316,9 @@ p {
     padding: 12px 20px;
     display: flex;
     gap: 0;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     backdrop-filter: blur(20px);
+    pointer-events: auto;
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -186,6 +335,8 @@ p {
     cursor: pointer;
     font-weight: 500;
     position: relative;
+    pointer-events: auto;
+    z-index: 50;
 }
 
 .nav-item:hover {
@@ -817,8 +968,7 @@ section:nth-child(odd) {
 }
 
 .episode-tile:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+        box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
     border-color: var(--besties-pink);
 }
 
@@ -1117,8 +1267,7 @@ section:nth-child(odd) {
 }
 
 .bestie-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--besties-pink);
+        border-color: var(--besties-pink);
     box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
 }
 
@@ -1181,8 +1330,7 @@ section:nth-child(odd) {
 }
 
 .bestie-profile-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 16px 48px rgba(255, 107, 157, 0.2);
+        box-shadow: 0 16px 48px rgba(255, 107, 157, 0.2);
     border-color: var(--besties-pink);
 }
 
@@ -1247,6 +1395,47 @@ section:nth-child(odd) {
     line-height: 1.5;
 }
 
+/* Tagline Banner Section */
+.tagline-banner-section {
+    padding: 60px 20px;
+    background: #f9f9f9;
+    overflow: hidden;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.tagline-banner {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.tagline-text {
+    font-size: clamp(2rem, 6vw, 4rem);
+    font-weight: 700;
+    font-family: 'Childlike', 'Fredoka', sans-serif;
+    background: linear-gradient(90deg, var(--besties-pink) 0%, var(--besties-purple) 50%, var(--besties-pink) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    white-space: nowrap;
+    animation: scroll-left 20s linear infinite;
+    letter-spacing: 0.05em;
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-33.33%);
+    }
+}
+
 /* Blog Section */
 .blog-section {
     padding: 80px 20px;
@@ -1298,17 +1487,16 @@ section:nth-child(odd) {
 
 .blog-card {
     background: white;
-    border-radius: 12px;
+    border-radius: 0;
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease, opacity 0.3s ease;
-    border: 1px solid #f0f0f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease, opacity 0.3s ease;
+    border: 1px solid #eee;
     opacity: 1;
 }
 
 .blog-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(255, 107, 157, 0.15);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .blog-image {
@@ -1386,7 +1574,7 @@ section:nth-child(odd) {
 /* Gallery Section */
 .gallery-section {
     padding: 80px 20px;
-    background: linear-gradient(135deg, #FFF5F7 0%, #F9F3FF 100%);
+    background: #ffffff;
 }
 
 .gallery-container {
@@ -1445,7 +1633,7 @@ section:nth-child(odd) {
     border-radius: 12px;
     overflow: hidden;
     background: white;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .gallery-image img {
@@ -1570,7 +1758,7 @@ section:nth-child(odd) {
 }
 
 .partnerships-stats {
-    background: linear-gradient(135deg, var(--besties-lavender) 0%, #E8F0FF 100%);
+    background: #f9f9f9;
     padding: 3rem;
     border-radius: 15px;
 }
@@ -1593,7 +1781,7 @@ section:nth-child(odd) {
     padding: 2rem;
     border-radius: 12px;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .stat-card h4 {
@@ -2222,6 +2410,8 @@ section:nth-child(odd) {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    pointer-events: auto;
+    cursor: pointer;
 }
 
 /* Shop Section */
@@ -3032,8 +3222,7 @@ section:nth-child(odd) {
 }
 
 .product-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+        box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
 }
 
 .product-image {
@@ -3232,8 +3421,7 @@ section:nth-child(odd) {
 }
 
 .benefit-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 24px rgba(255, 107, 157, 0.15);
+        box-shadow: 0 8px 24px rgba(255, 107, 157, 0.15);
 }
 
 .benefit-icon {
@@ -3359,87 +3547,197 @@ section:nth-child(odd) {
 
 /* Footer */
 .footer {
-    background: #ffffff;
-    color: #333333;
-    padding: 40px 20px;
-    border-top: 1px solid #e0e0e0;
+    background: #2c2c2c;
+    color: white;
+    padding: 60px 20px 40px;
 }
 
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
 }
 
 .footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 4rem;
+    margin-bottom: 3rem;
+}
+
+.footer-column {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 3rem;
+    flex-direction: column;
+}
+
+.footer-column-title {
+    font-family: 'Childlike', 'Fredoka', sans-serif;
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: white;
     margin-bottom: 1.5rem;
-    flex-wrap: wrap;
+    background: linear-gradient(135deg, var(--besties-pink) 0%, var(--besties-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .footer-links {
+    list-style: none;
     display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.8rem;
 }
 
 .footer-links a {
-    color: #666666;
+    color: rgba(255, 255, 255, 0.85);
     text-decoration: none;
     font-size: 0.95rem;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    padding-left: 0;
 }
 
 .footer-links a:hover {
     color: var(--besties-pink);
+    padding-left: 8px;
 }
 
-.footer-socials {
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-}
-
-.footer-socials a {
-    color: #666666;
-    text-decoration: none;
+.footer-newsletter-text {
+    color: rgba(255, 255, 255, 0.85);
     font-size: 0.95rem;
-    transition: color 0.3s ease;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
 }
 
-.footer-socials a:hover {
-    color: var(--besties-pink);
+.footer-newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.footer-newsletter-form input {
+    padding: 12px 16px;
+    border: none;
+    border-radius: 25px;
+    background: white;
+    color: #333;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.footer-newsletter-form input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--besties-pink);
+}
+
+.footer-newsletter-form input::placeholder {
+    color: #999;
+}
+
+.footer-newsletter-btn {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, var(--besties-pink) 0%, var(--besties-purple) 100%);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.footer-newsletter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 107, 157, 0.3);
 }
 
 .footer-divider {
     height: 1px;
-    background: #e0e0e0;
-    margin: 1.5rem 0;
+    background: rgba(255, 255, 255, 0.2);
+    margin: 3rem 0;
+}
+
+.footer-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.social-icon {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    color: white;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.social-icon:hover {
+    background: var(--besties-pink);
+    transform: translateY(-3px);
 }
 
 .footer-copyright {
     text-align: center;
-}
-
-.footer-copyright p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
     margin: 0;
-    color: #999999;
-    font-size: 0.9rem;
 }
 
-.footer-link {
+.footer-copyright a {
     color: var(--besties-pink);
     text-decoration: none;
     font-weight: 600;
     transition: all 0.3s ease;
 }
 
-.footer-link:hover {
+.footer-copyright a:hover {
     text-decoration: underline;
-    opacity: 0.8;
+}
+
+/* Responsive - Mission and Stats Sections */
+@media (max-width: 768px) {
+    .mission-highlight-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .mission-highlight-section {
+        padding: 50px 20px;
+    }
+
+    .mission-highlight-quote {
+        padding: 2rem;
+    }
+
+    .stats-section {
+        padding: 50px 20px;
+    }
+
+    .stats-grid {
+        gap: 1.5rem;
+    }
+
+    .stat-item {
+        padding: 2rem 1.5rem;
+    }
 }
 
 /* Mobile First Responsive Design */
@@ -3853,8 +4151,8 @@ section:nth-child(odd) {
     max-width: 100%;
     height: auto;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: opacity 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
 }
 
 .story-image-hover {
@@ -3866,13 +4164,14 @@ section:nth-child(odd) {
     max-width: 100%;
     object-fit: cover;
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
 .story-image:hover .story-image-photo {
-    opacity: 0;
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(255, 107, 157, 0.25);
 }
 
 .story-image:hover .story-image-hover {
@@ -3954,8 +4253,7 @@ section:nth-child(odd) {
 }
 
 .value-item:hover {
-    transform: translateY(-8px);
-    border-color: var(--besties-pink);
+        border-color: var(--besties-pink);
     box-shadow: 0 15px 40px rgba(255, 107, 157, 0.1);
 }
 
@@ -3980,7 +4278,7 @@ section:nth-child(odd) {
 
 /* Brand Promise Section */
 .brand-promise-section {
-    background: linear-gradient(135deg, var(--besties-lavender) 0%, #E8F0FF 100%);
+    background: #f9f9f9;
     padding: 3rem;
     border-radius: 15px;
     text-align: center;
@@ -5297,6 +5595,11 @@ section:nth-child(odd) {
     </style>
     </head>
 <body>
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <p>✨ Made to Shine Conference 2024 - Join Us for an Unforgettable Experience! ✨</p>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <button class="hamburger-menu" id="hamburgerMenu" aria-label="Toggle navigation menu">
@@ -5392,11 +5695,47 @@ section:nth-child(odd) {
         <div class="hero-image-bottom">
             <img src="assets/image_4.png" alt="The Four Besties" class="besties-characters">
         </div>
-        <div class="hero-decorative">
-            <div class="sparkle sparkle-1">✨</div>
-            <div class="sparkle sparkle-2">💜</div>
-            <div class="sparkle sparkle-3">🌟</div>
-            <div class="sparkle sparkle-4">💖</div>
+    </section>
+
+    <!-- Mission Highlight Section -->
+    <section class="mission-highlight-section">
+        <div class="mission-highlight-container">
+            <div class="mission-highlight-text">
+                <h2 class="mission-highlight-title">
+                    <span class="title-part-bold">EMPOWERING</span>
+                    <span class="title-part-outline">GIRLS</span>
+                    <span class="title-part-bold">TO SHINE</span>
+                </h2>
+                <p class="mission-highlight-subtitle">Building confidence, celebrating friendship, and inspiring big dreams since day one.</p>
+            </div>
+            <div class="mission-highlight-quote">
+                <p>"Besties is a movement where every girl discovers her unique shine and knows she belongs in a community of friends who get her."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <h2 class="stats-title">Our Impact</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3 class="stat-number">500K+</h3>
+                    <p class="stat-label">Community Members</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="stat-number">100+</h3>
+                    <p class="stat-label">Podcast Episodes</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="stat-number">10M+</h3>
+                    <p class="stat-label">Total Impressions</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="stat-number">50+</h3>
+                    <p class="stat-label">Countries Reached</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -6049,6 +6388,13 @@ section:nth-child(odd) {
         </div>
     </section>
 
+    <!-- Tagline Banner Section -->
+    <section class="tagline-banner-section">
+        <div class="tagline-banner">
+            <div class="tagline-text">MADE TO SHINE • CONFIDENT • BRAVE • CREATIVE • MADE TO SHINE • CONFIDENT • BRAVE • CREATIVE • MADE TO SHINE • CONFIDENT • BRAVE • CREATIVE</div>
+        </div>
+    </section>
+
     <!-- Blog Section -->
     <section class="blog-section" id="blog">
         <div class="blog-container">
@@ -6658,21 +7004,51 @@ section:nth-child(odd) {
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-content">
-                <div class="footer-links">
-                    <a href="#about">About</a>
-                    <a href="#podcast">Podcast</a>
-                    <a href="#experiences">Shop</a>
-                    <a href="#contact">Contact</a>
+                <!-- Explore Column -->
+                <div class="footer-column">
+                    <h4 class="footer-column-title">explore</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#podcast">Podcast</a></li>
+                        <li><a href="#experiences">Experiences</a></li>
+                    </ul>
                 </div>
-                <div class="footer-socials">
-                    <a href="https://www.instagram.com/eglistudios?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a>
-                    <a href="https://youtube.com/@eglistudios?si=bFi4YwRzcKOfWP-y" target="_blank">YouTube</a>
-                    <a href="https://www.tiktok.com/@bestgurlies?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a>
+
+                <!-- Connect Column -->
+                <div class="footer-column">
+                    <h4 class="footer-column-title">connect</h4>
+                    <ul class="footer-links">
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="https://www.instagram.com/eglistudios?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank">Instagram</a></li>
+                        <li><a href="https://youtube.com/@eglistudios?si=bFi4YwRzcKOfWP-y" target="_blank">YouTube</a></li>
+                        <li><a href="https://www.tiktok.com/@bestgurlies?is_from_webapp=1&sender_device=pc" target="_blank">TikTok</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter Column -->
+                <div class="footer-column">
+                    <h4 class="footer-column-title">stay connected</h4>
+                    <p class="footer-newsletter-text">Join our community and receive the latest updates and news from Besties!</p>
+                    <form class="footer-newsletter-form" id="footerNewsletterForm">
+                        <input type="email" placeholder="Your email" required>
+                        <button type="submit" class="footer-newsletter-btn">Join Us</button>
+                    </form>
                 </div>
             </div>
+
             <div class="footer-divider"></div>
-            <div class="footer-copyright">
-                <p>&copy; 2026 Besties. Made to Shine ✨ | Built by <a href="https://wa.me/233246381172" target="_blank" class="footer-link">Michael</a></p>
+
+            <div class="footer-bottom">
+                <div class="footer-socials">
+                    <a href="https://www.instagram.com/eglistudios" target="_blank" class="social-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm0 22c-5.5 0-10-4.5-10-10s4.5-10 10-10 10 4.5 10 10-4.5 10-10 10zm3.7-18h-7.4c-2 0-3.6 1.6-3.6 3.6v7.4c0 2 1.6 3.6 3.6 3.6h7.4c2 0 3.6-1.6 3.6-3.6V7.6c0-2-1.6-3.6-3.6-3.6zm0 10h-.4c.4-1.2.6-2.5.6-3.9 0-5.5-4.5-10-10-10S0 6.5 0 12s4.5 10 10 10 10-4.5 10-10z"/></svg>
+                    </a>
+                    <a href="https://youtube.com/@eglistudios" target="_blank" class="social-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </a>
+                </div>
+                <p class="footer-copyright">&copy; 2026 Besties. Made to Shine ✨ | Built by <a href="https://wa.me/233246381172" target="_blank">Michael</a></p>
             </div>
         </div>
     </footer>
