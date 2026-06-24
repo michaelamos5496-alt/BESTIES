@@ -1301,8 +1301,9 @@ section:nth-child(odd) {
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
+    transition: all 0.3s ease, opacity 0.3s ease;
     border: 1px solid #f0f0f0;
+    opacity: 1;
 }
 
 .blog-card:hover {
@@ -1434,6 +1435,7 @@ section:nth-child(odd) {
 .gallery-item {
     cursor: pointer;
     transition: all 0.3s ease;
+    user-select: none;
 }
 
 .gallery-image {
@@ -1486,6 +1488,67 @@ section:nth-child(odd) {
     font-size: 1.05rem;
     color: var(--besties-pink);
     text-align: center;
+}
+
+/* Gallery Modal */
+.gallery-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.gallery-modal-overlay.active {
+    display: flex;
+}
+
+.gallery-modal {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(255, 107, 157, 0.3);
+}
+
+.gallery-modal img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.gallery-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    border-radius: 50%;
+    font-size: 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--besties-pink);
+    z-index: 1001;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-modal-close:hover {
+    background: white;
+    transform: scale(1.1);
 }
 
 /* Partnerships Section */
@@ -5994,11 +6057,7 @@ section:nth-child(odd) {
 
             <div class="blog-filters">
                 <button class="blog-filter-btn active" data-category="all">All</button>
-                <button class="blog-filter-btn" data-category="friendship">Friendship Tips</button>
-                <button class="blog-filter-btn" data-category="confidence">Confidence Building</button>
-                <button class="blog-filter-btn" data-category="school">School Life</button>
-                <button class="blog-filter-btn" data-category="goals">Goal Setting</button>
-                <button class="blog-filter-btn" data-category="creative">Creative Activities</button>
+                <button class="blog-filter-btn" data-category="instagram">Instagram Posts</button>
             </div>
 
             <div class="blog-grid">
@@ -6103,119 +6162,117 @@ section:nth-child(odd) {
 
             <div class="gallery-tabs">
                 <button class="gallery-tab-btn active" data-filter="all">All</button>
-                <button class="gallery-tab-btn" data-filter="podcast">Podcast</button>
-                <button class="gallery-tab-btn" data-filter="events">Events</button>
-                <button class="gallery-tab-btn" data-filter="conference">Conference</button>
-                <button class="gallery-tab-btn" data-filter="behind">Behind the Scenes</button>
+                <button class="gallery-tab-btn" data-filter="montage">Montage</button>
+                <button class="gallery-tab-btn" data-filter="moments">Moments</button>
             </div>
 
             <div class="gallery-grid">
-                <div class="gallery-item" data-filter="podcast">
+                <div class="gallery-item" data-filter="montage">
                     <div class="gallery-image">
-                        <img src="assets/image_34.jpg" alt="Podcast Recording Session">
+                        <img src="gallery-images/montage-1.jpg" alt="Montage Collection">
                         <div class="gallery-overlay">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
                             </svg>
                         </div>
                     </div>
-                    <h3>Latest Podcast Episode</h3>
+                    <h3>Montage Moments</h3>
                 </div>
 
-                <div class="gallery-item" data-filter="events">
+                <div class="gallery-item" data-filter="montage">
                     <div class="gallery-image">
-                        <img src="assets/image_35.jpg" alt="Besties Meetup Event">
+                        <img src="gallery-images/montage-2.jpg" alt="Montage Collection">
                         <div class="gallery-overlay">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
                             </svg>
                         </div>
                     </div>
-                    <h3>Summer Meetup Fun</h3>
+                    <h3>Besties Together</h3>
                 </div>
 
-                <div class="gallery-item" data-filter="conference">
+                <div class="gallery-item" data-filter="montage">
                     <div class="gallery-image">
-                        <img src="assets/image_36.jpg" alt="Conference Highlights">
+                        <img src="gallery-images/montage-3.jpg" alt="Montage Collection">
                         <div class="gallery-overlay">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
                             </svg>
                         </div>
                     </div>
-                    <h3>Made to Shine Conference</h3>
+                    <h3>Shining Bright</h3>
                 </div>
 
-                <div class="gallery-item" data-filter="behind">
+                <div class="gallery-item" data-filter="moments">
                     <div class="gallery-image">
-                        <img src="assets/image_37.jpg" alt="Behind the Scenes">
+                        <img src="gallery-images/others-1.jpg" alt="Special Moments">
                         <div class="gallery-overlay">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
                             </svg>
                         </div>
                     </div>
-                    <h3>Production Moments</h3>
+                    <h3>Memorable Moments</h3>
                 </div>
 
-                <div class="gallery-item" data-filter="podcast">
+                <div class="gallery-item" data-filter="montage">
                     <div class="gallery-image">
-                        <img src="assets/image_38.jpg" alt="Guest Interview">
+                        <img src="gallery-images/montage-4.jpg" alt="Montage Collection">
                         <div class="gallery-overlay">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
                             </svg>
                         </div>
                     </div>
-                    <h3>Guest Interview Special</h3>
+                    <h3>Community Vibes</h3>
                 </div>
 
-                <div class="gallery-item" data-filter="events">
+                <div class="gallery-item" data-filter="moments">
                     <div class="gallery-image">
-                        <img src="assets/image_39.jpg" alt="Girls Connect">
+                        <img src="gallery-images/others-2.jpg" alt="Special Moments">
                         <div class="gallery-overlay">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
                             </svg>
                         </div>
                     </div>
-                    <h3>Besties Connect Event</h3>
+                    <h3>Behind the Scenes</h3>
                 </div>
 
-                <div class="gallery-item" data-filter="conference">
+                <div class="gallery-item" data-filter="montage">
                     <div class="gallery-image">
-                        <img src="assets/image_40.jpg" alt="Workshop Fun">
+                        <img src="gallery-images/montage-5.jpg" alt="Montage Collection">
                         <div class="gallery-overlay">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
                             </svg>
                         </div>
                     </div>
-                    <h3>Interactive Workshops</h3>
+                    <h3>Real Talk Sessions</h3>
                 </div>
 
-                <div class="gallery-item" data-filter="behind">
+                <div class="gallery-item" data-filter="moments">
                     <div class="gallery-image">
-                        <img src="assets/image_41.jpg" alt="Team Vibes">
+                        <img src="gallery-images/others-4.jpg" alt="Special Moments">
                         <div class="gallery-overlay">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
                             </svg>
                         </div>
                     </div>
-                    <h3>Our Amazing Team</h3>
+                    <h3>Amazing Experiences</h3>
                 </div>
 
-                <div class="gallery-item" data-filter="events">
+                <div class="gallery-item" data-filter="moments">
                     <div class="gallery-image">
-                        <img src="assets/image_42.jpg" alt="Community Spotlight">
+                        <img src="gallery-images/others-5.jpg" alt="Special Moments">
                         <div class="gallery-overlay">
                             <svg viewBox="0 0 24 24" fill="currentColor">
                                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
                             </svg>
                         </div>
                     </div>
-                    <h3>Community Spotlight</h3>
+                    <h3>Sisterhood in Action</h3>
                 </div>
             </div>
         </div>
@@ -6621,6 +6678,11 @@ section:nth-child(odd) {
     </footer>
 
 
+    <!-- GSAP Library for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- External Scripts -->
+    <script src="script.js"></script>
 
     <script>
 
@@ -7007,6 +7069,14 @@ document.addEventListener('click', function(e) {
         }
     }
 });
+
+    <!-- Gallery Modal -->
+    <div class="gallery-modal-overlay" id="galleryModalOverlay">
+        <div class="gallery-modal" id="galleryModal">
+            <img id="galleryModalImage" src="" alt="Gallery Image" />
+            <button class="gallery-modal-close" id="galleryModalClose">×</button>
+        </div>
+    </div>
 
     </script>
 </body>
