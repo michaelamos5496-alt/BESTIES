@@ -373,7 +373,7 @@ p {
 .hero-title {
     color: var(--besties-pink);
     font-family: 'Childlike', 'Fredoka', sans-serif;
-    font-size: clamp(1.4rem, 8vw, 2.5rem);
+    font-size: clamp(2rem, 12vw, 4rem);
     margin-bottom: clamp(0.8rem, 2vw, 1rem);
     animation: fadeInDown 0.8s ease;
     font-weight: 700;
@@ -1076,54 +1076,26 @@ p {
     margin-bottom: 1.5rem;
 }
 
-.values-section {
-    margin-top: 3rem;
-}
-
-.values-section h3 {
-    text-align: center;
-    font-size: 1.6rem;
-    margin-bottom: 2rem;
-}
-
-.values-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1.5rem;
-}
-
-.value-card {
-    background: #2d3561;
-    border: 2px solid var(--besties-pink);
-    border-radius: 12px;
-    padding: 1.5rem;
-    text-align: center;
-    transition: all 0.3s ease;
-    color: #E0E0E0;
-}
-
-.value-card:hover {
-    transform: translateY(-5px);
-    border-color: #FFD700;
-    box-shadow: 0 8px 20px rgba(255, 107, 157, 0.4);
-}
-
-.value-icon {
-    font-size: 2rem;
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-.value-card h4 {
-    margin: 0;
-    font-size: 1rem;
+.mission-box {
+    background: linear-gradient(135deg, var(--besties-pink) 0%, var(--besties-purple) 100%);
+    padding: 2.5rem;
+    border-radius: 15px;
     color: white;
+    margin-bottom: 4rem;
+    text-align: center;
 }
 
-.value-card p {
-    font-size: 0.85rem;
-    color: #bbb;
-    margin: 0.5rem 0 0 0;
+.mission-box h3 {
+    color: white;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.mission-box p {
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.8;
 }
 
 /* Contact Section */
@@ -1347,77 +1319,6 @@ p {
     display: block;
 }
 
-.mission-box {
-    background: linear-gradient(135deg, var(--besties-pink) 0%, var(--besties-purple) 100%);
-    padding: 2.5rem;
-    border-radius: 15px;
-    color: white;
-    margin-bottom: 4rem;
-    text-align: center;
-}
-
-.mission-box h3 {
-    color: white;
-    font-size: 1.6rem;
-    margin-bottom: 1rem;
-}
-
-.mission-box p {
-    color: rgba(255, 255, 255, 0.95);
-    margin: 0;
-    font-size: 1.05rem;
-    line-height: 1.8;
-}
-
-.values-heading {
-    text-align: center;
-    font-size: 2rem;
-    margin-bottom: 3rem;
-    background: linear-gradient(135deg, var(--besties-pink) 0%, var(--besties-purple) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.values-grid-about {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 2rem;
-    margin-bottom: 4rem;
-}
-
-.value-card-about {
-    background: #f9f9f9;
-    padding: 2rem;
-    border-radius: 12px;
-    text-align: center;
-    border: 2px solid var(--besties-lavender);
-    transition: all 0.3s ease;
-}
-
-.value-card-about:hover {
-    border-color: var(--besties-pink);
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(255, 107, 157, 0.15);
-}
-
-.value-icon-about {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.value-card-about h4 {
-    font-size: 1.2rem;
-    color: var(--besties-pink);
-    margin-bottom: 0.8rem;
-}
-
-.value-card-about p {
-    font-size: 0.9rem;
-    color: #666;
-    margin: 0;
-}
-
 @media (max-width: 768px) {
     .about-story-section {
         grid-template-columns: 1fr;
@@ -1533,7 +1434,7 @@ p {
             <div class="action-cards">
                 <a href="https://youtube.com/@eglistudios?si=-eqMuwAPyjTCM5kq" class="action-card" style="text-decoration: none;" target="_blank">
                     <img src="assets/image_1.jpg" alt="Besties Podcast" class="action-card-image">
-                    <div class="action-card-header">PODCAST</div>
+                    <div class="action-card-header">BESTIES PODCAST</div>
                 </a>
                 <a href="shop.html" class="action-card" style="text-decoration: none;">
                     <img src="assets/image_2.jpg" alt="Shop Merchandise" class="action-card-image">
@@ -1557,9 +1458,7 @@ p {
             <div class="about-story-section">
                 <div class="about-story-text">
                     <h3>The Besties Community</h3>
-                    <p>Besties is a global movement for girls. We're building a worldwide community where every girl finds her tribe, builds unshakeable confidence, and knows she absolutely belongs.</p>
-                    <p>Thousands of girls across the globe are part of the Besties movement. From local chapters to online communities, Besties creates spaces where girls support each other, celebrate friendship, and chase their biggest dreams together.</p>
-                    <p>We're not just a brand—we're a collective of girls empowering each other to shine. Join a movement that's changing what friendship and community mean for the next generation.</p>
+                    <p>Besties is a global movement for girls building a worldwide community where every girl finds her tribe, builds unshakeable confidence, and knows she absolutely belongs. Thousands of girls across the globe are part of our movement, from local chapters to online communities where they support each other, celebrate friendship, and chase their biggest dreams together. We're not just a brand—we're a collective of girls empowering each other to shine, changing what friendship and community mean for the next generation.</p>
                 </div>
                 <img src="assets/image_5.jpg" alt="The Besties Community" class="about-story-image">
             </div>
