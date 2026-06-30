@@ -1482,29 +1482,49 @@ p {
 
     <!-- Registration Modal -->
     <div class="modal-overlay" id="registrationModal">
-        <div class="modal">
+        <div class="modal" style="max-width: 600px;">
             <div class="modal-header">
                 <h2>Become a Bestie!</h2>
                 <button class="modal-close" id="modalClose">×</button>
             </div>
             <div class="modal-content">
                 <div class="registration-intro">
-                    <p><strong>Welcome!</strong> Tell us about yourself and why you want to join the Besties community. Share your story, interests, and what you're looking for in a community of supportive friends.</p>
+                    <p><strong>Welcome!</strong> Join our community and select your membership tier.</p>
                 </div>
 
                 <form id="registrationForm">
+                    <!-- Membership Tiers -->
                     <div class="form-group">
-                        <label for="fullName">Full Name</label>
+                        <label>Select Your Membership Tier</label>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div style="border: 2px solid #e0e0e0; border-radius: 8px; padding: 1rem; cursor: pointer; transition: all 0.3s;" class="tier-option" onclick="selectTier(this, 29.99, 'Basic')">
+                                <div style="font-weight: 600; color: var(--besties-pink); margin-bottom: 0.5rem;">Basic</div>
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--besties-pink); margin-bottom: 0.5rem;">$29.99</div>
+                                <div style="font-size: 0.85rem; color: #666;">Annual</div>
+                            </div>
+                            <div style="border: 2px solid #e0e0e0; border-radius: 8px; padding: 1rem; cursor: pointer; transition: all 0.3s;" class="tier-option" onclick="selectTier(this, 79.99, 'Premium')">
+                                <div style="font-weight: 600; color: var(--besties-pink); margin-bottom: 0.5rem;">Premium ⭐</div>
+                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--besties-pink); margin-bottom: 0.5rem;">$79.99</div>
+                                <div style="font-size: 0.85rem; color: #666;">Annual</div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="selectedTier" required>
+                        <input type="hidden" id="selectedPrice" required>
+                    </div>
+
+                    <!-- Personal Information -->
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
                         <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="email">Email Address</label>
+                        <label for="email">Email Address *</label>
                         <input type="email" id="email" name="email" placeholder="Enter your email" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="age">Age Group</label>
+                        <label for="age">Age Group *</label>
                         <select id="age" name="age" style="width: 100%; padding: 12px 15px; border: 1px solid #e0e0e0; border-radius: 8px; font-family: inherit; font-size: 0.95rem;" required>
                             <option value="">Select your age group</option>
                             <option value="8-10">8-10 years</option>
@@ -1516,12 +1536,59 @@ p {
 
                     <div class="form-group">
                         <label for="story">Tell Your Story</label>
-                        <textarea id="story" name="story" placeholder="Share why you want to join Besties and what you're passionate about..." required></textarea>
+                        <textarea id="story" name="story" placeholder="Share why you want to join Besties..." required></textarea>
+                    </div>
+
+                    <!-- Payment Method -->
+                    <div class="form-group">
+                        <label>Payment Method</label>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.5rem;">
+                            <button type="button" class="payment-option-btn active" onclick="selectPaymentMethod(this, 'card')" style="padding: 10px; border: 2px solid var(--besties-pink); background: white; color: var(--besties-pink); border-radius: 6px; cursor: pointer; font-weight: 600;">💳 Card</button>
+                            <button type="button" class="payment-option-btn" onclick="selectPaymentMethod(this, 'paypal')" style="padding: 10px; border: 2px solid #e0e0e0; background: white; color: #666; border-radius: 6px; cursor: pointer; font-weight: 600;">PayPal</button>
+                            <button type="button" class="payment-option-btn" onclick="selectPaymentMethod(this, 'google')" style="padding: 10px; border: 2px solid #e0e0e0; background: white; color: #666; border-radius: 6px; cursor: pointer; font-weight: 600;">Google Pay</button>
+                        </div>
+                        <input type="hidden" id="selectedPaymentMethod" value="card" required>
+                    </div>
+
+                    <!-- Card Details -->
+                    <div id="cardDetails">
+                        <div class="form-group">
+                            <label for="cardName">Name on Card *</label>
+                            <input type="text" id="cardName" name="cardName" placeholder="Enter name on card">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cardNumber">Card Number *</label>
+                            <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label for="expiry">Expiry Date *</label>
+                                <input type="text" id="expiry" name="expiry" placeholder="MM/YY" maxlength="5">
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV *</label>
+                                <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="4">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Summary -->
+                    <div style="background: #f9f9f9; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Membership:</span>
+                            <span id="summaryTier" style="font-weight: 600;">Select a tier</span>
+                        </div>
+                        <div style="border-top: 1px solid #e0e0e0; padding-top: 0.5rem; display: flex; justify-content: space-between;">
+                            <span style="font-weight: 600;">Total:</span>
+                            <span id="summaryTotal" style="font-weight: 700; color: var(--besties-pink); font-size: 1.1rem;">$0.00</span>
+                        </div>
                     </div>
 
                     <div class="modal-buttons">
                         <button type="button" class="modal-btn secondary" id="modalCancel">Cancel</button>
-                        <button type="submit" class="modal-btn primary">Register Now</button>
+                        <button type="submit" class="modal-btn primary">Complete Registration</button>
                     </div>
                 </form>
             </div>
@@ -1679,17 +1746,70 @@ registrationModal.addEventListener('click', (e) => {
     }
 });
 
+// Tier Selection
+window.selectTier = function(element, price, tier) {
+    document.querySelectorAll('.tier-option').forEach(el => {
+        el.style.borderColor = '#e0e0e0';
+        el.style.backgroundColor = 'transparent';
+    });
+    element.style.borderColor = 'var(--besties-pink)';
+    element.style.backgroundColor = 'rgba(255, 107, 157, 0.05)';
+
+    document.getElementById('selectedTier').value = tier;
+    document.getElementById('selectedPrice').value = price;
+    document.getElementById('summaryTier').textContent = tier + ' - $' + price.toFixed(2);
+    document.getElementById('summaryTotal').textContent = '$' + price.toFixed(2);
+};
+
+// Payment Method Selection
+window.selectPaymentMethod = function(element, method) {
+    document.querySelectorAll('.payment-option-btn').forEach(btn => {
+        btn.style.borderColor = '#e0e0e0';
+        btn.style.color = '#666';
+    });
+    element.style.borderColor = 'var(--besties-pink)';
+    element.style.color = 'var(--besties-pink)';
+
+    document.getElementById('selectedPaymentMethod').value = method;
+
+    const cardDetails = document.getElementById('cardDetails');
+    if (method === 'card') {
+        cardDetails.style.display = 'block';
+    } else {
+        cardDetails.style.display = 'none';
+    }
+};
+
+// Form submission
 registrationForm.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    const tier = document.getElementById('selectedTier').value;
+    const price = document.getElementById('selectedPrice').value;
+    const paymentMethod = document.getElementById('selectedPaymentMethod').value;
+
+    if (!tier) {
+        alert('Please select a membership tier');
+        return;
+    }
+
     const formData = {
         fullName: document.getElementById('fullName').value,
         email: document.getElementById('email').value,
         ageGroup: document.getElementById('age').value,
-        story: document.getElementById('story').value
+        story: document.getElementById('story').value,
+        tier: tier,
+        price: price,
+        paymentMethod: paymentMethod
     };
 
+    if (paymentMethod === 'card') {
+        formData.cardName = document.getElementById('cardName').value;
+        formData.cardNumber = document.getElementById('cardNumber').value.slice(-4);
+    }
+
     console.log('Registration submitted:', formData);
-    alert('Thank you for registering, ' + formData.fullName + '! We\'ll be in touch soon.');
+    alert('Thank you for registering, ' + formData.fullName + '! Your ' + tier + ' membership ($' + price + ') has been processed. We\'ll be in touch soon.');
     registrationForm.reset();
     closeRegistrationModal();
 });
