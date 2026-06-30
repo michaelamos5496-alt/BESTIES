@@ -1493,24 +1493,13 @@ p {
                 </div>
 
                 <form id="registrationForm">
-                    <!-- Membership Tiers -->
-                    <div class="form-group">
-                        <label>Select Your Membership Tier</label>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
-                            <div style="border: 2px solid #e0e0e0; border-radius: 8px; padding: 1rem; cursor: pointer; transition: all 0.3s;" class="tier-option" onclick="selectTier(this, 29.99, 'Basic')">
-                                <div style="font-weight: 600; color: var(--besties-pink); margin-bottom: 0.5rem;">Basic</div>
-                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--besties-pink); margin-bottom: 0.5rem;">$29.99</div>
-                                <div style="font-size: 0.85rem; color: #666;">Annual</div>
-                            </div>
-                            <div style="border: 2px solid #e0e0e0; border-radius: 8px; padding: 1rem; cursor: pointer; transition: all 0.3s;" class="tier-option" onclick="selectTier(this, 79.99, 'Premium')">
-                                <div style="font-weight: 600; color: var(--besties-pink); margin-bottom: 0.5rem;">Premium ⭐</div>
-                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--besties-pink); margin-bottom: 0.5rem;">$79.99</div>
-                                <div style="font-size: 0.85rem; color: #666;">Annual</div>
-                            </div>
-                        </div>
-                        <input type="hidden" id="selectedTier" required>
-                        <input type="hidden" id="selectedPrice" required>
+                    <!-- Membership Fee -->
+                    <div style="background: linear-gradient(135deg, rgba(255, 107, 157, 0.1) 0%, rgba(213, 166, 224, 0.1) 100%); padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem; text-align: center;">
+                        <div style="color: #666; font-size: 0.95rem; margin-bottom: 0.5rem;">Annual Membership</div>
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--besties-pink);">GHS 500</div>
+                        <div style="color: #999; font-size: 0.85rem; margin-top: 0.5rem;">Full access to all programs and events</div>
                     </div>
+                    <input type="hidden" id="selectedPrice" value="500" required>
 
                     <!-- Personal Information -->
                     <div class="form-group">
@@ -1578,11 +1567,11 @@ p {
                     <div style="background: #f9f9f9; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
                         <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
                             <span>Membership:</span>
-                            <span id="summaryTier" style="font-weight: 600;">Select a tier</span>
+                            <span style="font-weight: 600;">Annual - GHS 500</span>
                         </div>
                         <div style="border-top: 1px solid #e0e0e0; padding-top: 0.5rem; display: flex; justify-content: space-between;">
                             <span style="font-weight: 600;">Total:</span>
-                            <span id="summaryTotal" style="font-weight: 700; color: var(--besties-pink); font-size: 1.1rem;">$0.00</span>
+                            <span style="font-weight: 700; color: var(--besties-pink); font-size: 1.1rem;">GHS 500</span>
                         </div>
                     </div>
 
@@ -1746,21 +1735,6 @@ registrationModal.addEventListener('click', (e) => {
     }
 });
 
-// Tier Selection
-window.selectTier = function(element, price, tier) {
-    document.querySelectorAll('.tier-option').forEach(el => {
-        el.style.borderColor = '#e0e0e0';
-        el.style.backgroundColor = 'transparent';
-    });
-    element.style.borderColor = 'var(--besties-pink)';
-    element.style.backgroundColor = 'rgba(255, 107, 157, 0.05)';
-
-    document.getElementById('selectedTier').value = tier;
-    document.getElementById('selectedPrice').value = price;
-    document.getElementById('summaryTier').textContent = tier + ' - $' + price.toFixed(2);
-    document.getElementById('summaryTotal').textContent = '$' + price.toFixed(2);
-};
-
 // Payment Method Selection
 window.selectPaymentMethod = function(element, method) {
     document.querySelectorAll('.payment-option-btn').forEach(btn => {
@@ -1784,21 +1758,14 @@ window.selectPaymentMethod = function(element, method) {
 registrationForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const tier = document.getElementById('selectedTier').value;
     const price = document.getElementById('selectedPrice').value;
     const paymentMethod = document.getElementById('selectedPaymentMethod').value;
-
-    if (!tier) {
-        alert('Please select a membership tier');
-        return;
-    }
 
     const formData = {
         fullName: document.getElementById('fullName').value,
         email: document.getElementById('email').value,
         ageGroup: document.getElementById('age').value,
         story: document.getElementById('story').value,
-        tier: tier,
         price: price,
         paymentMethod: paymentMethod
     };
@@ -1809,7 +1776,7 @@ registrationForm.addEventListener('submit', (e) => {
     }
 
     console.log('Registration submitted:', formData);
-    alert('Thank you for registering, ' + formData.fullName + '! Your ' + tier + ' membership ($' + price + ') has been processed. We\'ll be in touch soon.');
+    alert('Thank you for registering, ' + formData.fullName + '! Your annual membership (GHS ' + price + ') has been processed. We\'ll be in touch soon.');
     registrationForm.reset();
     closeRegistrationModal();
 });
