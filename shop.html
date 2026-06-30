@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#FF6B9D">
+    <title>Besties Shop - Premium Merchandise</title>
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Fredoka:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --besties-pink: #FF6B9D;
+    --besties-purple: #D5A6E0;
+    --besties-lavender: #E8D4F8;
+    --white: #FFFFFF;
+    --light-gray: #FAFAFA;
+    --dark-gray: #333333;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--white);
+    color: var(--dark-gray);
+    line-height: 1.6;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Header */
+.shop-header {
+    padding: 30px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 100;
+}
+
+.shop-header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.shop-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--besties-pink) 0%, var(--besties-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.shop-nav {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.shop-nav a {
+    text-decoration: none;
+    color: var(--dark-gray);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.shop-nav a:hover {
+    color: var(--besties-pink);
+}
+
+.cart-icon {
+    position: relative;
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--besties-pink);
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+/* Hero Section */
+.shop-hero {
+    padding: 80px 20px;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.05) 0%, rgba(213, 166, 224, 0.05) 100%);
+}
+
+.shop-hero-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.shop-hero h1 {
+    font-size: clamp(2rem, 6vw, 3rem);
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, var(--besties-pink) 0%, var(--besties-purple) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: 700;
+}
+
+.shop-hero p {
+    font-size: 1.05rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+/* Shop Container */
+.shop-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 80px 20px;
+}
+
+/* Filters */
+.shop-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 10px 20px;
+    border: 2px solid #f0f0f0;
+    background: white;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    color: var(--dark-gray);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    border-color: var(--besties-pink);
+    color: var(--besties-pink);
+}
+
+/* Products Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.product-card {
+    background: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+}
+
+.product-image {
+    width: 100%;
+    height: 320px;
+    background: linear-gradient(135deg, var(--besties-lavender) 0%, #f5f5f5 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--besties-pink);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.product-info {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-category {
+    font-size: 0.85rem;
+    color: var(--besties-pink);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.product-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--dark-gray);
+    margin-bottom: 0.5rem;
+    font-family: 'Fredoka', sans-serif;
+}
+
+.product-description {
+    font-size: 0.9rem;
+    color: #999;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.product-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--besties-pink);
+    margin-bottom: 1rem;
+}
+
+.product-footer {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.qty-control {
+    display: flex;
+    border: 1px solid #f0f0f0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.qty-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: white;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--dark-gray);
+    transition: background 0.2s ease;
+}
+
+.qty-btn:hover {
+    background: #f9f9f9;
+}
+
+.qty-input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    font-weight: 600;
+    background: white;
+    color: var(--dark-gray);
+}
+
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.add-to-cart-btn {
+    flex-grow: 1;
+    padding: 10px 16px;
+    background: var(--besties-pink);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.add-to-cart-btn:hover {
+    background: #FF5A8E;
+    transform: translateY(-1px);
+}
+
+/* Cart Sidebar */
+.cart-sidebar {
+    position: fixed;
+    right: -400px;
+    top: 0;
+    width: 400px;
+    height: 100vh;
+    background: white;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+    transition: right 0.4s ease;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    max-width: 100vw;
+}
+
+.cart-sidebar.active {
+    right: 0;
+}
+
+.cart-header {
+    padding: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-header h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.cart-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--dark-gray);
+}
+
+.cart-items {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.cart-item {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    gap: 1rem;
+}
+
+.cart-item-image {
+    width: 80px;
+    height: 80px;
+    background: #f9f9f9;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.cart-item-content {
+    flex-grow: 1;
+}
+
+.cart-item-name {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+}
+
+.cart-item-price {
+    color: var(--besties-pink);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.cart-item-remove {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    font-size: 0.9rem;
+    text-decoration: underline;
+}
+
+.cart-footer {
+    padding: 20px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.cart-total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, var(--besties-pink) 0%, #FF8FB3 100%);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.checkout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 107, 157, 0.3);
+}
+
+.cart-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0);
+    z-index: 150;
+    transition: background 0.3s ease;
+    pointer-events: none;
+}
+
+.cart-overlay.active {
+    background: rgba(0, 0, 0, 0.3);
+    pointer-events: auto;
+}
+
+/* Footer */
+.shop-footer {
+    padding: 40px 20px;
+    border-top: 1px solid #f0f0f0;
+    text-align: center;
+    color: #999;
+    font-size: 0.9rem;
+}
+
+.shop-footer a {
+    color: var(--dark-gray);
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.shop-footer a:hover {
+    color: var(--besties-pink);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+
+    .cart-sidebar {
+        width: 100%;
+        right: -100%;
+    }
+
+    .shop-nav {
+        gap: 1rem;
+        font-size: 0.9rem;
+    }
+
+    .shop-nav a:nth-child(2) {
+        display: none;
+    }
+
+    .product-image {
+        height: 240px;
+        font-size: 3rem;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="shop-header">
+        <div class="shop-header-content">
+            <a href="index.html" class="shop-logo">BESTIES</a>
+            <nav class="shop-nav">
+                <a href="index.html">Back to Home</a>
+                <a href="#new-arrivals">New</a>
+                <div class="cart-icon" id="cartIcon">
+                    🛍️
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="shop-hero">
+        <div class="shop-hero-content">
+            <h1>Besties Shop</h1>
+            <p>Wear your confidence. Celebrate your squad. Made for girls who shine.</p>
+        </div>
+    </section>
+
+    <!-- Shop -->
+    <div class="shop-container">
+        <!-- Filters -->
+        <div class="shop-filters">
+            <button class="filter-btn active">All</button>
+            <button class="filter-btn">Apparel</button>
+            <button class="filter-btn">Accessories</button>
+            <button class="filter-btn">Lifestyle</button>
+        </div>
+
+        <!-- Products -->
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be generated by JavaScript -->
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="cart-close" id="cartClose">×</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p style="text-align: center; color: #999; padding: 40px 20px;">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </aside>
+
+    <!-- Footer -->
+    <footer class="shop-footer">
+        <p>&copy; 2026 Besties Shop.
+            <a href="#">Returns</a>
+            <a href="#">Shipping</a>
+            <a href="#">FAQ</a>
+            <a href="index.html">Back to Besties</a>
+        </p>
+    </footer>
+
+    <script>
+// Products Data
+const products = [
+    {
+        id: 1,
+        name: "Confidence Tee",
+        category: "Apparel",
+        price: 24.99,
+        badge: "New",
+        description: "Classic cotton tee with iconic Besties logo"
+    },
+    {
+        id: 2,
+        name: "Squad Hoodie",
+        category: "Apparel",
+        price: 54.99,
+        badge: "Best Seller",
+        description: "Premium hoodie for cozy squad moments"
+    },
+    {
+        id: 3,
+        name: "Shine Cap",
+        category: "Accessories",
+        price: 19.99,
+        description: "Adjustable cap with embroidered branding"
+    },
+    {
+        id: 4,
+        name: "Dream Big Backpack",
+        category: "Lifestyle",
+        price: 44.99,
+        badge: "New",
+        description: "Spacious and stylish for school or travel"
+    },
+    {
+        id: 5,
+        name: "Besties Water Bottle",
+        category: "Lifestyle",
+        price: 29.99,
+        description: "Insulated bottle to keep drinks cold all day"
+    },
+    {
+        id: 6,
+        name: "Friendship Journal",
+        category: "Lifestyle",
+        price: 16.99,
+        description: "Prompt-filled journal for daily reflection"
+    },
+    {
+        id: 7,
+        name: "Squad Socks Set",
+        category: "Accessories",
+        price: 14.99,
+        description: "Colorful socks pack of 3 with fun designs"
+    },
+    {
+        id: 8,
+        name: "Besties Sticker Pack",
+        category: "Accessories",
+        price: 7.99,
+        description: "100+ stickers to decorate everything"
+    }
+];
+
+let cart = [];
+
+// Render Products
+function renderProducts() {
+    const grid = document.getElementById('productsGrid');
+    grid.innerHTML = products.map(product => `
+        <div class="product-card">
+            <div class="product-image">
+                <span style="font-size: 4rem;">👕</span>
+                ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+            </div>
+            <div class="product-info">
+                <div class="product-category">${product.category}</div>
+                <div class="product-name">${product.name}</div>
+                <div class="product-description">${product.description}</div>
+                <div class="product-price">$${product.price.toFixed(2)}</div>
+                <div class="product-footer">
+                    <div class="qty-control">
+                        <button class="qty-btn">−</button>
+                        <input type="number" class="qty-input" value="1" min="1">
+                        <button class="qty-btn">+</button>
+                    </div>
+                    <button class="add-to-cart-btn" data-id="${product.id}">Add</button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    // Add event listeners
+    document.querySelectorAll('.add-to-cart-btn').forEach(btn => {
+        btn.addEventListener('click', addToCart);
+    });
+
+    document.querySelectorAll('.qty-btn').forEach(btn => {
+        btn.addEventListener('click', handleQuantity);
+    });
+}
+
+// Add to Cart
+function addToCart(e) {
+    const button = e.target;
+    const card = button.closest('.product-card');
+    const qtyInput = card.querySelector('.qty-input');
+    const qty = parseInt(qtyInput.value);
+    const productId = parseInt(button.dataset.id);
+    const product = products.find(p => p.id === productId);
+
+    let cartItem = cart.find(item => item.id === productId);
+    if (cartItem) {
+        cartItem.quantity += qty;
+    } else {
+        cart.push({ ...product, quantity: qty });
+    }
+
+    updateCart();
+    qtyInput.value = 1;
+}
+
+// Handle Quantity
+function handleQuantity(e) {
+    const input = e.target.parentElement.querySelector('.qty-input');
+    const currentValue = parseInt(input.value);
+    if (e.target.textContent === '−' && currentValue > 1) {
+        input.value = currentValue - 1;
+    } else if (e.target.textContent === '+') {
+        input.value = currentValue + 1;
+    }
+}
+
+// Update Cart
+function updateCart() {
+    const cartCount = document.getElementById('cartCount');
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+
+    cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    if (cart.length === 0) {
+        cartItems.innerHTML = '<p style="text-align: center; color: #999; padding: 40px 20px;">Your cart is empty</p>';
+        cartTotal.textContent = '$0.00';
+        return;
+    }
+
+    cartItems.innerHTML = cart.map(item => `
+        <div class="cart-item">
+            <div class="cart-item-image"></div>
+            <div class="cart-item-content">
+                <div class="cart-item-name">${item.name}</div>
+                <div class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+                <div>Qty: ${item.quantity}</div>
+                <button class="cart-item-remove" onclick="removeFromCart(${item.id})">Remove</button>
+            </div>
+        </div>
+    `).join('');
+
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    cartTotal.textContent = '$' + total.toFixed(2);
+}
+
+// Remove from Cart
+function removeFromCart(id) {
+    cart = cart.filter(item => item.id !== id);
+    updateCart();
+}
+
+// Cart Toggle
+const cartIcon = document.getElementById('cartIcon');
+const cartSidebar = document.getElementById('cartSidebar');
+const cartOverlay = document.getElementById('cartOverlay');
+const cartClose = document.getElementById('cartClose');
+
+cartIcon.addEventListener('click', () => {
+    cartSidebar.classList.add('active');
+    cartOverlay.classList.add('active');
+});
+
+cartClose.addEventListener('click', () => {
+    cartSidebar.classList.remove('active');
+    cartOverlay.classList.remove('active');
+});
+
+cartOverlay.addEventListener('click', () => {
+    cartSidebar.classList.remove('active');
+    cartOverlay.classList.remove('active');
+});
+
+// Initial render
+renderProducts();
+    </script>
+</body>
+</html>
