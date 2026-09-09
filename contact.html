@@ -98,9 +98,15 @@ html {
 }
 
 .contact-container {
-    max-width: 700px;
+    max-width: 940px;
     margin: 0 auto;
     text-align: center;
+}
+
+.contact-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
 }
 
 .contact-card {
@@ -147,6 +153,15 @@ html {
 .contact-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 28px rgba(63, 163, 77, 0.4);
+}
+
+.contact-btn.pink {
+    background: linear-gradient(135deg, var(--besties-pink) 0%, #FF8FB3 100%);
+    box-shadow: 0 8px 20px rgba(255, 107, 157, 0.3);
+}
+
+.contact-btn.pink:hover {
+    box-shadow: 0 12px 28px rgba(255, 107, 157, 0.4);
 }
 
 .contact-note {
@@ -281,12 +296,22 @@ html {
     <!-- Contact -->
     <section class="contact-section">
         <div class="contact-container">
-            <div class="contact-card">
-                <div class="contact-icon">💬</div>
-                <h2>Chat With Us on WhatsApp</h2>
-                <p>The fastest way to reach the Besties team — ask about camps, events, partnerships, or anything else on your mind.</p>
-                <a href="https://wa.me/233248051774" class="contact-btn" target="_blank">Message Us on WhatsApp →</a>
-                <p class="contact-note">We typically reply within a few hours.</p>
+            <div class="contact-cards">
+                <div class="contact-card">
+                    <div class="contact-icon">💬</div>
+                    <h2>Chat on WhatsApp</h2>
+                    <p>The fastest way to reach the Besties team — ask about camps, events, partnerships, or anything else on your mind.</p>
+                    <a href="https://wa.me/233248051774" class="contact-btn" target="_blank">Message Us on WhatsApp →</a>
+                    <p class="contact-note">We typically reply within a few hours.</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h2>Email Us</h2>
+                    <p>Prefer email? Send us a message and we'll get back to you as soon as we can.</p>
+                    <a href="mailto:hello@bestiesgh.com" class="contact-btn pink">hello@bestiesgh.com</a>
+                    <p class="contact-note">We typically reply within 1-2 business days.</p>
+                </div>
             </div>
 
             <div class="info-grid">
@@ -334,7 +359,7 @@ html {
     if (typeof gsap === 'undefined') return;
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-    const gridSelector = '.about-camp-grid, .events-grid, .features-grid, .gallery-grid, .products-grid, .programs-grid, .action-cards, .info-grid';
+    const gridSelector = '.about-camp-grid, .events-grid, .features-grid, .gallery-grid, .products-grid, .programs-grid, .action-cards, .info-grid, .contact-cards';
 
     // CSS `transition: all` on cards/buttons (for hover effects) fights with
     // GSAP's own rendering of the same properties (transform/opacity),
