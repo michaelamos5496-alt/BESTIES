@@ -445,5 +445,75 @@ html {
     <footer class="footer">
         <p>&copy; 2026 Besties. <a href="https://wa.me/233248051774" target="_blank">WhatsApp</a> · <a href="index.html">Back to Home</a></p>
     </footer>
+
+    <!-- GSAP scroll animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+    <script>
+(function () {
+    if (typeof gsap === 'undefined') return;
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+    const gridSelector = '.about-camp-grid, .events-grid, .features-grid, .gallery-grid, .products-grid, .programs-grid, .action-cards';
+
+    // CSS `transition: all` on cards/buttons (for hover effects) fights with
+    // GSAP's own rendering of the same properties (transform/opacity),
+    // leaving elements stuck at their "from" values. Neutralize the CSS
+    // transition for the duration of the reveal, restore it once settled.
+    function revealStagger(targets, trigger, distance, duration, stagger) {
+        if (!targets.length) return;
+        gsap.set(targets, { transition: 'none' });
+        gsap.from(targets, {
+            y: distance,
+            opacity: 0,
+            duration: duration,
+            ease: 'power2.out',
+            stagger: stagger,
+            scrollTrigger: {
+                trigger: trigger,
+                start: 'top 88%',
+                toggleActions: 'play none none reverse'
+            },
+            onComplete: () => gsap.set(targets, { clearProps: 'transition' }),
+            onReverseComplete: () => gsap.set(targets, { clearProps: 'transition' })
+        });
+    }
+
+    // Staggered reveals for card/grid groups
+    document.querySelectorAll(gridSelector).forEach((grid) => {
+        revealStagger(grid.children, grid, 30, 0.7, 0.1);
+    });
+
+    // Fade-up reveal for other sections (skips the hero, the first section)
+    document.querySelectorAll('section').forEach((section, i) => {
+        if (i === 0) return;
+        if (section.querySelector(gridSelector)) return;
+        revealStagger(section.children, section, 40, 0.8, 0.12);
+    });
+
+    // Smooth GSAP scrolling for in-page anchor links
+    document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener('click', function (e) {
+            const id = this.getAttribute('href');
+            if (!id || id.length < 2) return;
+            const target = document.querySelector(id);
+            if (!target) return;
+            e.preventDefault();
+            gsap.to(window, {
+                duration: 1,
+                scrollTo: { y: target, offsetY: 90 },
+                ease: 'power2.inOut'
+            });
+        });
+    });
+
+    // Recalculate trigger positions once every image has finished loading,
+    // since late-loading images shift section positions after ScrollTrigger's
+    // initial calculation.
+    window.addEventListener('load', () => ScrollTrigger.refresh());
+})();
+    </script>
+
 </body>
 </html>
